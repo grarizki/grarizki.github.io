@@ -1,0 +1,127 @@
+---
+import { Icon } from "astro-icon/components";
+
+const projects = [
+  {
+    name: "StocksX",
+    description:
+      "Indonesian stock market platform with real-time charts, broker activity tracking, watchlist, and multi-language support.",
+    tech: ["Nuxt", "Vue 3", "TypeScript", "Tailwind", "Chart.js", "Firebase"],
+    github: "https://github.com/grarizki/stocksX",
+    live: "https://stoxlyz.com",
+    featured: true,
+  },
+  {
+    name: "Stormlax",
+    description:
+      "Real-time analytics microservice with gRPC inter-service communication, WebSocket notifications, and JWT authentication.",
+    tech: ["NestJS", "gRPC", "Astro", "React 19", "Socket.IO", "Turborepo"],
+    github: "https://github.com/grarizki/Stormlax",
+    live: null,
+    featured: false,
+  },
+  {
+    name: "AI Engineer Monorepo",
+    description:
+      "CLI-first monorepo for AI/ML prototyping. FastAPI backend with training pipeline, artifact tracking, and Astro dashboard.",
+    tech: ["FastAPI", "Astro", "SQLAlchemy", "Docker", "Typer", "Alembic"],
+    github: "https://github.com/grarizki/template-monorepo-ai-engineer",
+    live: null,
+    featured: false,
+  },
+  {
+    name: "Fasting Tracker",
+    description:
+      "Cross-platform intermittent fasting app with animated timer, configurable schedules, local notifications, and offline-first storage.",
+    tech: ["Flutter", "Dart", "Riverpod", "sqflite", "go_router"],
+    github: "https://github.com/grarizki/intermittenApp",
+    live: null,
+    featured: false,
+  },
+  {
+    name: "Sobi Sentiment",
+    description:
+      "Product sentiment analyzer powered by AI agents. Scrapes live web reviews and returns rating, sentiment breakdown, and pros/cons.",
+    tech: ["FastAPI", "Tavily", "OpenRouter", "anime.js", "Tailwind"],
+    github: "https://github.com/grarizki/agentic-toko-oren",
+    live: null,
+    featured: false,
+  },
+  {
+    name: "Product Discovery AI",
+    description:
+      "AI-facilitated product discovery interview that guides you through 10 categories and generates a complete PRD draft.",
+    tech: ["FastAPI", "OpenRouter", "Jinja2", "uv"],
+    github: "https://github.com/grarizki/assignment-3-devscale",
+    live: null,
+    featured: false,
+  },
+];
+---
+
+<section id="projects" class="scroll-mt-24 relative z-10">
+  <div class="mt-16 md:mt-0">
+    <h2
+      class="text-3xl md:text-4xl lg:text-5xl font-bold lg:tracking-tight text-center">
+      Projects
+    </h2>
+  </div>
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mx-auto max-w-screen-lg my-8 md:my-12">
+    {
+      projects.map((project) => (
+        <div
+          class:list={[
+            "bg-white/60 dark:bg-white/5 backdrop-blur-md border rounded-2xl shadow-xl hover:scale-[1.02] transition-all duration-300 hover:bg-white/80 dark:hover:bg-white/10 group p-5 md:p-7 flex flex-col",
+            project.featured
+              ? "border-emerald-400/40 dark:border-emerald-500/30 md:col-span-2"
+              : "border-white/20 dark:border-white/10",
+          ]}>
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <h3 class="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-800 dark:from-white dark:to-gray-400 group-hover:to-black dark:group-hover:to-white transition-all">
+              {project.name}
+              {project.featured && (
+                <span class="ml-2 text-xs font-mono text-emerald-700 dark:text-emerald-400 border border-emerald-400/30 px-2 py-0.5 rounded align-middle">
+                  Featured
+                </span>
+              )}
+            </h3>
+            <div class="flex gap-2 shrink-0">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener"
+                aria-label={`${project.name} GitHub`}
+                class="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition p-1">
+                <Icon name="simple-icons:github" class="w-5 h-5" />
+              </a>
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`${project.name} Live Demo`}
+                  class="text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition p-1">
+                  <Icon name="tabler:external-link" class="w-5 h-5" />
+                </a>
+              )}
+            </div>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-4 flex-grow">
+            {project.description}
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map((t) => (
+              <span class="px-2.5 py-0.5 text-xs font-mono text-emerald-800 dark:text-emerald-200 bg-emerald-400/20 dark:bg-emerald-500/10 backdrop-blur-md border border-emerald-400/20 dark:border-emerald-500/20 rounded-full">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
