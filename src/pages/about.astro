@@ -1,0 +1,56 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+---
+
+<Layout title="About">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">About</Fragment>
+      <Fragment slot="desc">
+        Software Engineer with 3+ years of experience building high-performance marketing websites and web applications using React, TypeScript, and Tailwind CSS. Specialized in responsive design, SEO optimization, and conversion-focused UI development.
+        <br/>
+        <br/>
+        Currently working at PT. BFI Finance Indonesia, Indonesia's largest multifinance company, where I led performance optimization efforts that achieved 97% LCP improvement and 50-60% reduction in CMS API requests.
+        <br/>
+        <br/>
+        My approach combines analytical thinking (Physics Engineering background) with modern frontend best practices. I believe that performance is a feature, not an afterthought, and that every millisecond counts when it comes to user experience and conversion rates.
+        <br/>
+        <br/>
+        Let's connect and build something awesome together!
+      </Fragment>
+    </Sectionhead>
+    <div class="grid md:grid-cols-3 gap-10 mx-auto pl-6 mt-4">
+      <div>
+        <a
+          href="https://www.linkedin.com/in/grarizki"
+          target="_blank"
+          rel="noopener noreferrer">
+          <button
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+            LinkedIn
+          </button>
+        </a>
+        <a
+          href="mailto:raka.grarizki@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer">
+          <button
+            class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Mail
+          </button>
+        </a>
+        <a
+          href="https://github.com/grarizki"
+          target="_blank"
+          rel="noopener noreferrer">
+          <button
+            class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg transition">
+            GitHub
+          </button>
+        </a>
+      </div>
+    </div>
+  </Container>
+</Layout>

@@ -1,0 +1,76 @@
+---
+const techStack = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Strapi CMS",
+  "Tailwind CSS",
+  "Node.js",
+];
+---
+
+<section id="about" class="scroll-mt-24 relative z-10">
+  <div class="mt-16 text-center">
+    <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight text-black dark:text-white">
+      About Me
+    </h1>
+    <p class="text-lg mt-4 text-slate-600 dark:text-slate-400">
+      Performance-Driven Frontend Engineer
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-12 mx-auto max-w-screen-lg mt-12">
+    <div class="bg-white/5 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 p-8 rounded-2xl shadow-2xl transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/20">
+      <h3 class="text-2xl font-bold text-black dark:text-white mb-4">
+        Who I Am
+      </h3>
+      <p class="text-black dark:text-gray-300 leading-relaxed mb-6">
+        Hi! I'm a <strong>Frontend Engineer</strong> based in Jakarta, Indonesia,
+        passionate about building
+        <span class="text-emerald-600 dark:text-emerald-400 font-semibold">high-performance web applications</span>. I specialize in the <strong>React/Next.js ecosystem</strong>, with deep expertise in
+        performance optimization, SEO, and conversion-focused UI development.
+      </p>
+
+      <h4 class="text-lg font-semibold text-black dark:text-white mb-3">
+        Tech Stack
+      </h4>
+      <div class="flex flex-wrap gap-2 mb-8">
+        {techStack.map((tech) => (
+          <span class="px-3 py-1 text-xs font-mono text-emerald-800 dark:text-emerald-200 bg-emerald-400/20 dark:bg-emerald-500/10 backdrop-blur-md border border-emerald-400/20 dark:border-emerald-500/20 rounded-full shadow-sm">
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <div class="flex gap-4">
+        <a href="mailto:raka.grarizki@gmail.com" class="bg-black text-white hover:bg-emerald-600 dark:bg-white dark:text-black dark:hover:bg-emerald-500 dark:hover:text-white font-bold py-2 px-6 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25">
+          Contact Me
+        </a>
+        <a href="https://www.linkedin.com/in/grarizki" target="_blank" class="bg-transparent border border-black text-black hover:border-emerald-600 hover:text-emerald-600 hover:bg-emerald-50 dark:border-white dark:text-white dark:hover:border-emerald-400 dark:hover:text-emerald-400 dark:hover:bg-emerald-900/10 font-bold py-2 px-6 rounded-full transition-all">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <div class="h-full flex flex-col justify-between gap-6">
+      <div class="bg-gradient-to-br from-blue-600/10 to-purple-600/10 dark:from-blue-600/20 dark:to-purple-600/20 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl transition-all duration-300 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20">
+        <h4 class="text-4xl font-bold text-black dark:text-white mb-1">3+</h4>
+        <p class="text-gray-900 dark:text-gray-400 text-sm uppercase tracking-wider font-semibold">
+          Years of Experience
+        </p>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-600/10 to-teal-600/10 dark:from-emerald-600/20 dark:to-teal-600/20 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/20">
+        <h4 class="text-4xl font-bold text-black dark:text-white mb-1">97%</h4>
+        <p class="text-gray-900 dark:text-gray-400 text-sm uppercase tracking-wider font-semibold">
+          LCP Improvement
+        </p>
+      </div>
+      <div class="bg-gradient-to-br from-orange-600/10 to-red-600/10 dark:from-orange-600/20 dark:to-red-600/20 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl transition-all duration-300 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20">
+        <h4 class="text-4xl font-bold text-black dark:text-white mb-1">50-60%</h4>
+        <p class="text-gray-900 dark:text-gray-400 text-sm uppercase tracking-wider font-semibold">
+          API Request Reduction
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

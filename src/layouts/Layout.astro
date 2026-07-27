@@ -1,0 +1,123 @@
+---
+import { SEO } from "astro-seo";
+import Footer from "@components/footer.astro";
+import Navbar from "@components/navbar/navbar.astro";
+import { ViewTransitions } from "astro:transitions";
+import "@fontsource-variable/inter/index.css";
+import "@fontsource-variable/bricolage-grotesque";
+
+export interface Props {
+  title?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const resolvedImageWithDomain = new URL(
+  "/opengraph.jpg",
+  Astro.site,
+).toString();
+
+const { title } = Astro.props;
+
+const makeTitle = title
+  ? title + " | " + "Raka Grarizki"
+  : "Raka Grarizki - Software Engineer";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#3E2723" />
+    <ViewTransitions />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Raka Grarizki Portfolio",
+        "url": "https://grarizki.github.io/",
+        "author": {
+          "@type": "Person",
+          "name": "Raka Grarizki",
+          "url": "https://grarizki.github.io/",
+          "jobTitle": "Software Engineer",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "PT. BFI Finance Indonesia"
+          }
+        }
+      }
+    </script>
+    <script is:inline>
+      const getThemePreference = () => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      };
+
+      const setDarkClass = () => {
+        const isDark = getThemePreference() === "dark";
+        document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+      };
+
+      setDarkClass();
+
+      document.addEventListener("astro:after-swap", setDarkClass);
+
+      if (typeof localStorage !== "undefined") {
+        const observer = new MutationObserver(() => {
+          const isDark = document.documentElement.classList.contains("dark");
+          localStorage.setItem("theme", isDark ? "dark" : "light");
+        });
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class"],
+        });
+      }
+    </script>
+
+    <SEO
+      title={makeTitle}
+      description="Raka Grarizki - Software Engineer specializing in Next.js, React, and performance optimization. Building high-performance web applications that drive business results."
+      canonical={canonicalURL}
+      twitter={{
+        creator: "@grarizki",
+        site: "@grarizki",
+        card: "summary_large_image",
+      }}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: "website",
+          title: `Raka Grarizki - Software Engineer`,
+          image: resolvedImageWithDomain,
+        },
+        image: {
+          alt: "Raka Grarizki - Software Engineer",
+        },
+      }}
+    />
+  </head>
+  <body
+    class="text-black dark:text-white transition-colors duration-300 bg-white dark:bg-black">
+    <Navbar />
+    <div transition:animate="fade">
+      <slot />
+    </div>
+    <Footer />
+    <style is:global>
+      img {
+        content-visibility: auto;
+      }
+    </style>
+  </body>
+</html>

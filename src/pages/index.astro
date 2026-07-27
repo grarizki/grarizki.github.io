@@ -1,0 +1,19 @@
+---
+import Container from "@components/container.astro";
+import Hero from "@components/hero.astro";
+import Logos from "@components/logos.astro";
+import Layout from "@layouts/Layout.astro";
+import AboutSection from "@components/AboutSection.astro";
+import WorkSection from "@components/WorkSection.astro";
+---
+
+<Layout title="">
+  <Container>
+    <div id="home" class="scroll-mt-24">
+      <Hero />
+    </div>
+    <Logos />
+    <WorkSection />
+    <AboutSection />
+  </Container>
+</Layout>

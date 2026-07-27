@@ -1,0 +1,79 @@
+---
+import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+
+// Filter blog entries with 'draft: false' & date before current date
+const publishedBlogEntries = await getCollection("blog", ({ data }) => {
+  return !data.draft && data.publishDate < new Date();
+});
+
+// Sort content entries by publication date
+publishedBlogEntries.sort(function (a, b) {
+  return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
+});
+---
+
+<Layout title="Blog">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Our Blog</Fragment>
+      <Fragment slot="desc">
+        We write about building startups and thoughts going on our mind.
+      </Fragment>
+    </Sectionhead>
+    <main class="mt-16">
+      <ul
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto px-6">
+        {
+          publishedBlogEntries.map((blogPostEntry, index) => (
+            <li>
+              <a href={`/blog/${blogPostEntry.slug}`}>
+                <div class="flex flex-col h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-white/10 hover:shadow-xl transition-shadow duration-300">
+                  <div class="relative aspect-video overflow-hidden">
+                    <Picture
+                      src={blogPostEntry.data.image.src}
+                      alt={blogPostEntry.data.image.alt}
+                      sizes="(max-width: 800px) 100vw, 800px"
+                      width={800}
+                      height={450}
+                      loading={index <= 2 ? "eager" : "lazy"}
+                      decoding={index <= 2 ? "sync" : "async"}
+                      class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                  <div class="p-6 flex flex-col flex-grow">
+                    <span class="text-blue-400 uppercase tracking-wider text-sm font-medium mb-2">
+                      {blogPostEntry.data.category}
+                    </span>
+
+                    <h2 class="text-2xl font-bold leading-snug tracking-tight mb-3 line-clamp-2">
+                      {blogPostEntry.data.title}
+                    </h2>
+
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 flex-grow">
+                      {blogPostEntry.data.snippet}
+                    </p>
+
+                    <div class="flex justify-between items-center mt-auto pt-4 border-t border-gray-100 dark:border-white/10">
+                      <span class="text-gray-400 text-sm">
+                        {blogPostEntry.data.author}
+                      </span>
+                      <time
+                        class="text-gray-400 text-sm"
+                        datetime={blogPostEntry.data.publishDate.toISOString()}>
+                        {blogPostEntry.data.publishDate.toDateString()}
+                      </time>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </Container>
+</Layout>
