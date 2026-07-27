@@ -111,10 +111,17 @@ const makeTitle = title
   </head>
   <body
     class="text-black dark:text-white transition-colors duration-300 bg-white dark:bg-black">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500">
+      Skip to content
+    </a>
     <Navbar />
-    <div transition:animate="fade">
-      <slot />
-    </div>
+    <main id="main-content">
+      <div transition:animate="fade">
+        <slot />
+      </div>
+    </main>
     <Footer />
     <style is:global>
       img {

@@ -4,30 +4,33 @@ import { Icon } from "astro-icon/components";
 ---
 
 <Container>
-  <header class="grid grid-cols-3 items-center my-8">
-    <!-- Left: Empty for balance -->
-    <div></div>
+  <nav aria-label="Main navigation">
+    <header class="grid grid-cols-3 items-center my-8">
+      <!-- Left: Empty for balance -->
+      <div></div>
 
-    <!-- Center: Logo -->
-    <div class="text-center">
-      <a
-        href="/"
-        class="text-2xl font-bold text-black dark:text-white hover:text-emerald-500 transition">
-        grarizki
-      </a>
-    </div>
+      <!-- Center: Logo -->
+      <div class="text-center">
+        <a
+          href="/"
+          class="text-2xl font-bold text-black dark:text-white hover:text-emerald-500 transition"
+          aria-label="grarizki - Home">
+          grarizki
+        </a>
+      </div>
 
-    <!-- Right: Toggle -->
-    <div class="flex justify-end">
-      <button
-        id="theme-toggle"
-        class="text-black dark:text-white hover:text-emerald-500 transition focus:outline-none p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
-        aria-label="Toggle Dark Mode">
-        <Icon name="tabler:sun" class="w-6 h-6 dark:hidden" />
-        <Icon name="tabler:moon" class="w-6 h-6 hidden dark:block" />
-      </button>
-    </div>
-  </header>
+      <!-- Right: Toggle -->
+      <div class="flex justify-end">
+        <button
+          id="theme-toggle"
+          class="text-black dark:text-white hover:text-emerald-500 transition focus:outline-none p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
+          aria-label="Toggle Dark Mode">
+          <Icon name="tabler:sun" class="w-6 h-6 dark:hidden" aria-hidden="true" />
+          <Icon name="tabler:moon" class="w-6 h-6 hidden dark:block" aria-hidden="true" />
+        </button>
+      </div>
+    </header>
+  </nav>
 </Container>
 
 <script>
