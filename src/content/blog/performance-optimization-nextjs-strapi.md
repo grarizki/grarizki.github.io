@@ -3,7 +3,7 @@ title: "How I Improved Page Load by 97% with Next.js and Strapi CMS"
 snippet: "A practical guide to optimizing Next.js applications with Strapi CMS backend. Learn how I achieved 97% LCP improvement and 50-60% reduction in API requests."
 publishDate: "2026-07-27"
 image:
-  src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
+  src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&q=75"
   alt: "Performance optimization dashboard"
 category: "Performance"
 tags:
@@ -14,8 +14,6 @@ tags:
 author: "Raka Grarizki"
 draft: false
 ---
-
-# How I Improved Page Load by 97% with Next.js and Strapi CMS
 
 After migrating BFI Finance Indonesia's marketing website to Next.js with Strapi CMS, we faced a critical problem: page load times were 13-21 seconds on key pages. This wasn't just a technical issue—it was directly impacting lead generation and conversion rates.
 

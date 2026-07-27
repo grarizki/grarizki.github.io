@@ -5,7 +5,7 @@ snippet: "Explore Andrej Karpathy's latest insights on AI agents, the shift to S
 publishDate: "2025-11-22 10:00"
 image:
   {
-    src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75",
     alt: "AI Vision",
   }
 category: "Artificial Intelligence"
