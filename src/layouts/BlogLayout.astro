@@ -7,43 +7,83 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title}>
+  <!-- Reading progress bar -->
+  <div
+    id="reading-progress"
+    class="fixed top-0 left-0 w-0 h-[3px] bg-emerald-500 dark:bg-emerald-400 z-50 transition-[width] duration-100"
+    role="progressbar"
+    aria-valuenow="0"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-label="Reading progress">
+  </div>
+
   <Container>
     <div class="mx-auto max-w-[735px] mt-14">
-      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+      <span
+        class="text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-sm font-medium">
         {frontmatter.category}
       </span>
       <h1
-        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
+        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight text-black dark:text-white">
         {frontmatter.title}
       </h1>
       <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-400">
+        <span class="text-gray-600 dark:text-gray-400">
           {frontmatter.author}
         </span>
-        <span class="text-gray-400">•</span>
-        <time class="text-gray-400" datetime={frontmatter.publishDate}>
+        <span class="text-gray-400 dark:text-gray-500">•</span>
+        <time
+          class="text-gray-600 dark:text-gray-400"
+          datetime={frontmatter.publishDate}>
           {getFormattedDate(frontmatter.publishDate)}
         </time>
-        <span class="text-gray-400 hidden md:block">•</span>
+        <span class="text-gray-400 dark:text-gray-500 hidden md:block">•</span>
         <div class="w-full md:w-auto flex flex-wrap gap-3">
           {
             frontmatter.tags.map((tag) => (
-              <span class="text-sm text-gray-500">#{tag}</span>
+              <span class="text-sm text-gray-500 dark:text-gray-400">
+                #{tag}
+              </span>
             ))
           }
         </div>
       </div>
     </div>
 
-    <div class="mx-auto prose prose-lg mt-6">
+    <div class="mx-auto prose prose-lg dark:prose-invert mt-6 prose-headings:text-black dark:prose-headings:text-white prose-a:text-emerald-600 dark:prose-a:text-emerald-400 prose-strong:text-black dark:prose-strong:text-white prose-code:text-emerald-700 dark:prose-code:text-emerald-300 prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950">
       <slot />
     </div>
-    <div class="text-center mt-8">
+    <div class="text-center mt-8 mb-16">
       <a
         href="/blog"
-        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
+        class="bg-gray-100 dark:bg-white/10 text-black dark:text-white px-5 py-3 rounded-md hover:bg-gray-200 dark:hover:bg-white/20 transition border border-gray-200 dark:border-white/10"
         >← Back to Blog</a
       >
     </div>
   </Container>
+
+  <script>
+    const updateProgress = () => {
+      const bar = document.getElementById("reading-progress");
+      if (!bar) return;
+
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const pct = docHeight > 0 ? Math.min((scrolled / docHeight) * 100, 100) : 0;
+
+      bar.style.width = `${pct}%`;
+      bar.setAttribute("aria-valuenow", Math.round(pct).toString());
+    };
+
+    document.addEventListener("astro:page-load", () => {
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive: true });
+    });
+
+    document.addEventListener("astro:before-swap", () => {
+      window.removeEventListener("scroll", updateProgress);
+    });
+  </script>
 </Layout>
