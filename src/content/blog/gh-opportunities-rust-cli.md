@@ -2,7 +2,7 @@
 draft: false
 title: "gh-opportunities: A Rust Tool That Finds Your Next Open-Source PR"
 snippet: "I built gh-opportunities, a Rust CLI + TUI that ranks GitHub repos by contribution opportunity — scoring good-first issues, staleness, README health, and code quality — so landing your first open-source PR takes minutes, not an afternoon of hunting."
-publishDate: "2026-02-01 10:00"
+publishDate: "2026-08-02 10:00"
 image:
   {
     src: "https://images.unsplash.com/photo-1561470508-fd4df1ed90b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75",
@@ -65,7 +65,7 @@ It is my first serious Rust UI, and the stack is a great workout for the ecosyst
 | HTTP client/server | `reqwest` + `axum` |
 | Cache | `rusqlite` |
 
-Two lessons stood out. First, modules as clean seams: the `ai/` layer is a trait you can swap providers on, and `security/` is additive without touching callers. Second, tests first — the codebase carries 109 passing tests, and each module owns its own.
+Two lessons stood out. First, modules as clean seams: the `ai/` layer is a trait you can swap providers on, and `security/` is additive without touching callers. Second, tests first — the codebase carries 112 passing tests, and each module owns its own.
 
 A genuinely useful effect: the project is itself the best recruiting tool for contributors. It builds issue ranking, so the contribution loop it searches for is the loop it lives in — pick an issue, run `cargo test`, and open your first PR.
 
