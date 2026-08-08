@@ -64,12 +64,13 @@ Building high-performance web applications that drive business results.
 
 ---
 
-### Sobi Sentiment — AI Product Analyzer
-> Agentic pipeline: Tavily scrapes reviews, OpenRouter LLM returns rating, sentiment breakdown, pros/cons.
+### Japan Phrasebook — Offline Japanese Phrasebook PWA
+> Offline-ready phrasebook for daily life in Japan: browse by category, save favorites, copy to clipboard, add custom phrases — installable PWA.
 
-**Stack:** FastAPI · Tavily · OpenRouter · anime.js · Tailwind
+**Stack:** React 19 · TypeScript · Vite · Tailwind · Framer Motion · localforage
 
-[![GitHub](https://img.shields.io/badge/Code-181717?style=flat-square&logo=github)](https://github.com/grarizki/agentic-toko-oren)
+[![GitHub](https://img.shields.io/badge/Code-181717?style=flat-square&logo=github)](https://github.com/grarizki/japan-phrasebook)
+[![Live](https://img.shields.io/badge/Live-10b981?style=flat-square&logo=googlechrome)](https://grarizki.github.io/japan-phrasebook/)
 
 ---
 
