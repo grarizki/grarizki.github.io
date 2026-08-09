@@ -2,7 +2,7 @@
 draft: false
 title: "Best Japanese Food: 3,482 Tabelog-Rated Restaurants as Static Vue Apps"
 snippet: "How five zero-fetch Vue apps — restaurants, budget eats, bakeries, top-100 — ship a 480 kB dataset with Effect Schema validation, SSR prerendering, and a service worker, all on GitHub Pages."
-publishDate: "2026-08-10 10:00"
+publishDate: "2026-08-10 05:00"
 image:
   {
     src: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75",

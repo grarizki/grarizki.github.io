@@ -8,6 +8,7 @@ import "@fontsource-variable/bricolage-grotesque/wght.css";
 
 export interface Props {
   title?: string;
+  lang?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -17,7 +18,7 @@ const resolvedImageWithDomain = new URL(
   Astro.site,
 ).toString();
 
-const { title } = Astro.props;
+const { title, lang = "en" } = Astro.props;
 
 const makeTitle = title
   ? title + " | " + "Raka Grarizki"
@@ -25,7 +26,7 @@ const makeTitle = title
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
