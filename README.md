@@ -74,6 +74,16 @@ Building high-performance web applications that drive business results.
 
 ---
 
+### Best Japanese Food — Tabelog-Rated Restaurant Directory
+> Five static Vue apps serving 3,482 Tabelog-rated restaurants across Tokyo, Osaka, Kyoto and Nara — restaurants, budget eats, bakeries, and a most-recommended list. Effect Schema-validated data pipeline, SSR prerendering, service worker caching.
+
+**Stack:** Effect · Vue 3 · Vite · pnpm · TypeScript · Service Worker
+
+[![GitHub](https://img.shields.io/badge/Code-181717?style=flat-square&logo=github)](https://github.com/grarizki/best-japanese-food)
+[![Live](https://img.shields.io/badge/Live-10b981?style=flat-square&logo=googlechrome)](https://grarizki.github.io/best-japanese-food/)
+
+---
+
 ### Product Discovery AI — PRD Generator
 > AI-facilitated interview guiding through 10 product categories, outputting a complete PRD draft.
 
