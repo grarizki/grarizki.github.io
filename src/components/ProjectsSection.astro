@@ -1,6 +1,30 @@
 ---
 import { Icon } from "astro-icon/components";
 
+// Static SSR — deterministic particle field, no runtime entropy
+const particles = [
+  { top: "16%", left: "10%", size: 4, delay: 0, dur: 6 },
+  { top: "30%", left: "22%", size: 3, delay: 1.2, dur: 7 },
+  { top: "12%", left: "38%", size: 5, delay: 2.1, dur: 5.5 },
+  { top: "68%", left: "14%", size: 3, delay: 0.6, dur: 8 },
+  { top: "80%", left: "28%", size: 4, delay: 3, dur: 6.5 },
+  { top: "22%", left: "62%", size: 3, delay: 1.8, dur: 7.5 },
+  { top: "74%", left: "48%", size: 5, delay: 0.9, dur: 6 },
+  { top: "16%", left: "84%", size: 3, delay: 2.6, dur: 7 },
+  { top: "60%", left: "78%", size: 4, delay: 1.4, dur: 8.5 },
+  { top: "86%", left: "88%", size: 3, delay: 3.4, dur: 6 },
+  { top: "42%", left: "90%", size: 4, delay: 0.3, dur: 7.5 },
+];
+
+// Rainbow sweep palette (same hues as ruixen hero)
+const rainbow = {
+  "--color-1": "hsl(210, 100%, 60%)", // Blue
+  "--color-2": "hsl(280, 80%, 65%)",  // Purple
+  "--color-3": "hsl(330, 100%, 65%)", // Pink
+  "--color-4": "hsl(20, 100%, 60%)",  // Orange
+  "--color-5": "hsl(140, 70%, 50%)",  // Green
+};
+
 const projects = [
   {
     name: "StocksX",
@@ -78,24 +102,50 @@ const projects = [
 ---
 
 <section id="projects" class="scroll-mt-24 relative z-10">
-  <div class="mt-16 md:mt-0">
+  <!-- gradient blobs -->
+  <div
+    class="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full blur-[120px]"
+    style="background: color-mix(in srgb, var(--motiq-accent) 28%, transparent)" />
+  <div
+    class="pointer-events-none absolute -bottom-28 -right-24 h-96 w-96 rounded-full blur-[160px]"
+    style="background: color-mix(in srgb, var(--motiq-accent) 18%, transparent)" />
+
+  <!-- floating particles -->
+  {particles.map((p) => (
+    <span
+      class="particle pointer-events-none absolute z-0 rounded-full bg-[var(--motiq-fg)]"
+      style={`top:${p.top};left:${p.left};width:${p.size}px;height:${p.size}px;opacity:.2;animation:float ${p.dur}s ease-in-out ${p.delay}s infinite`}
+    />
+  ))}
+
+  <div class="mt-16 md:mt-0 relative z-10 flex flex-col items-center">
+    <span
+      style={rainbow}
+      class="rainbow-border mb-4 inline-flex rounded-full bg-[linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-3),var(--color-4),var(--color-5))] bg-[length:200%] p-px shadow-sm animate-[rainbow_6s_linear_infinite]">
+      <span
+        class="animate-fade-up block rounded-full bg-[var(--motiq-surface)] px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--motiq-muted)]">
+        Featured Work
+      </span>
+    </span>
     <h2
-      class="text-3xl md:text-4xl lg:text-5xl font-bold lg:tracking-tight text-center">
+      class="animate-fade-up text-3xl md:text-4xl lg:text-5xl font-bold lg:tracking-tight text-center"
+      style="animation-delay:.1s">
       Projects
     </h2>
   </div>
 
   <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mx-auto max-w-screen-lg my-8 md:my-12">
+    class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mx-auto max-w-screen-lg my-8 md:my-12 relative z-10">
     {
-      projects.map((project) => (
+      projects.map((project, i) => (
         <div
           class:list={[
-            "bg-white/60 dark:bg-white/5 backdrop-blur-md border rounded-2xl shadow-xl hover:scale-[1.02] transition-all duration-300 hover:bg-white/80 dark:hover:bg-white/10 group p-5 md:p-7 flex flex-col",
+            "animate-fade-up bg-white/60 dark:bg-white/5 backdrop-blur-md border rounded-2xl shadow-xl hover:scale-[1.02] transition-all duration-300 hover:bg-white/80 dark:hover:bg-white/10 group p-5 md:p-7 flex flex-col",
             project.featured
               ? "border-emerald-400/40 dark:border-emerald-500/30 md:col-span-2"
               : "border-white/20 dark:border-white/10",
-          ]}>
+          ]}
+          style={`animation-delay:${0.2 + Math.min(i, 8) * 0.06}s`}>
           <div class="flex items-start justify-between gap-3 mb-3">
             <h3 class="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-800 dark:from-white dark:to-gray-400 group-hover:to-black dark:group-hover:to-white transition-all">
               {project.name}

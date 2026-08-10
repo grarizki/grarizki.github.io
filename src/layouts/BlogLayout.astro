@@ -3,10 +3,10 @@ import Container from "@components/container.astro";
 import { getFormattedDate } from "@utils/all";
 import Layout from "./Layout.astro";
 
-const { frontmatter, slug } = Astro.props;
+const { frontmatter, id } = Astro.props;
 
 const isId = frontmatter.lang === "id";
-const counterpartSlug = isId ? slug.replace(/-id$/, "") : `${slug}-id`;
+const counterpartSlug = isId ? id.replace(/-id$/, "") : `${id}-id`;
 const counterpartLabel = isId ? "English" : "Bahasa Indonesia";
 ---
 
@@ -52,7 +52,7 @@ const counterpartLabel = isId ? "English" : "Bahasa Indonesia";
         <span class="text-gray-500 dark:text-gray-500 hidden md:block">•</span>
         <div class="w-full md:w-auto flex flex-wrap gap-3">
           {
-            frontmatter.tags.map((tag) => (
+            frontmatter.tags.map((tag: string) => (
               <span class="text-sm text-gray-500 dark:text-gray-400">
                 #{tag}
               </span>

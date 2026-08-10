@@ -1,15 +1,75 @@
+---
+import Link from "@components/ui/link.astro";
+
+// Static SSR — deterministic particle field, no runtime entropy
+const particles = [
+  { top: "16%", left: "10%", size: 4, delay: 0, dur: 6 },
+  { top: "30%", left: "22%", size: 3, delay: 1.2, dur: 7 },
+  { top: "12%", left: "38%", size: 5, delay: 2.1, dur: 5.5 },
+  { top: "68%", left: "14%", size: 3, delay: 0.6, dur: 8 },
+  { top: "80%", left: "28%", size: 4, delay: 3, dur: 6.5 },
+  { top: "22%", left: "62%", size: 3, delay: 1.8, dur: 7.5 },
+  { top: "74%", left: "48%", size: 5, delay: 0.9, dur: 6 },
+  { top: "16%", left: "84%", size: 3, delay: 2.6, dur: 7 },
+  { top: "60%", left: "78%", size: 4, delay: 1.4, dur: 8.5 },
+  { top: "86%", left: "88%", size: 3, delay: 3.4, dur: 6 },
+  { top: "42%", left: "90%", size: 4, delay: 0.3, dur: 7.5 },
+];
+
+// Rainbow sweep palette (same hues as ruixen hero)
+const rainbow = {
+  "--color-1": "hsl(210, 100%, 60%)", // Blue
+  "--color-2": "hsl(280, 80%, 65%)",  // Purple
+  "--color-3": "hsl(330, 100%, 65%)", // Pink
+  "--color-4": "hsl(20, 100%, 60%)",  // Orange
+  "--color-5": "hsl(140, 70%, 50%)",  // Green
+};
+---
+
 <section
   class="grid lg:grid-cols-1 place-items-center pt-10 pb-6 md:pt-12 md:pb-18 relative z-10">
+  <!-- gradient blobs -->
   <div
-    class="p-5 md:p-8 rounded-2xl bg-white/60 dark:bg-white/5 backdrop-blur-lg border border-gray-200 dark:border-white/10 shadow-2xl max-w-4xl mx-auto w-full">
+    class="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full blur-[120px]"
+    style="background: color-mix(in srgb, var(--motiq-accent) 28%, transparent)" />
+  <div
+    class="pointer-events-none absolute -bottom-28 -right-24 h-96 w-96 rounded-full blur-[160px]"
+    style="background: color-mix(in srgb, var(--motiq-accent) 18%, transparent)" />
+
+  <!-- floating particles -->
+  {particles.map((p) => (
+    <span
+      class="particle pointer-events-none absolute z-0 rounded-full bg-[var(--motiq-fg)]"
+      style={`top:${p.top};left:${p.left};width:${p.size}px;height:${p.size}px;opacity:.2;animation:float ${p.dur}s ease-in-out ${p.delay}s infinite`}
+    />
+  ))}
+
+  <div
+    class="relative z-10 flex flex-col items-center gap-5 max-w-4xl mx-auto w-full text-center">
+    <span
+      style={rainbow}
+      class="rainbow-border inline-flex rounded-full bg-[linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-3),var(--color-4),var(--color-5))] bg-[length:200%] p-px shadow-sm animate-[rainbow_6s_linear_infinite]">
+      <span
+        class="animate-fade-up block rounded-full bg-[var(--motiq-surface)] px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--motiq-muted)]">
+        Software Engineer
+      </span>
+    </span>
     <h1
-      class="text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600 dark:from-white dark:to-gray-400 text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-center leading-tight">
+      class="animate-fade-up text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600 dark:from-white dark:to-gray-400 text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-center leading-tight"
+      style="animation-delay:.1s">
       Building High-Performance Web Applications.
     </h1>
     <p
-      class="text-gray-900 dark:text-gray-300 text-base md:text-lg mt-3 md:mt-4 text-center max-w-2xl mx-auto">
+      class="animate-fade-up text-gray-900 dark:text-gray-300 text-base md:text-lg mt-1 md:mt-2 text-center max-w-2xl mx-auto"
+      style="animation-delay:.2s">
       Software Engineer building high-performance web apps, AI-powered tools, and cross-platform mobile applications.
       Full-stack across React, FastAPI, NestJS, and Flutter.
     </p>
+    <div
+      class="animate-fade-up mt-2 md:mt-4 flex flex-wrap items-center justify-center gap-4"
+      style="animation-delay:.3s">
+      <Link href="/about">About Me</Link>
+      <Link href="/contact" style="outline">Get in Touch</Link>
+    </div>
   </div>
 </section>

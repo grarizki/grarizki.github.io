@@ -30,7 +30,7 @@ publishedBlogEntries.sort(function (a, b) {
         {
           publishedBlogEntries.map((blogPostEntry, index) => (
             <li>
-              <a href={`/blog/${blogPostEntry.slug}`}>
+              <a href={`/blog/${blogPostEntry.id}`}>
                 <div class="flex flex-col h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-white/10 hover:shadow-xl transition-shadow duration-300">
                   <div class="relative aspect-video overflow-hidden">
                     <Picture

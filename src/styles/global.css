@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ponytail: tokens duplicated from LuminousTopography's injected style so
+   non-island components (hero) can use them too; move source-of-truth here
+   and drop MOTIQ_TOKENS from the component if it ever grows */
+:root {
+  --motiq-accent: #315fea;
+  --motiq-accent-text: #244fd1;
+  --motiq-bg: #f7f9fc;
+  --motiq-border: #dce4ef;
+  --motiq-border-strong: #c5d1e1;
+  --motiq-fg: #101828;
+  --motiq-fg-secondary: #344054;
+  --motiq-muted: #667085;
+  --motiq-surface: #ffffff;
+  --motiq-surface-2: #f8fafd;
+}
+
+.dark,
+[data-theme="dark"] {
+  --motiq-accent: #4f7cff;
+  --motiq-accent-text: #7f9fff;
+  --motiq-bg: #080c14;
+  --motiq-border: #263449;
+  --motiq-border-strong: #354863;
+  --motiq-fg: #f8fafc;
+  --motiq-fg-secondary: #cbd5e1;
+  --motiq-muted: #9caabd;
+  --motiq-surface: #111827;
+  --motiq-surface-2: #192337;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rainbow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-16px);
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .particle,
+  .rainbow-border {
+    animation: none !important;
+  }
+}

@@ -2,9 +2,11 @@
 import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/inter/wght.css";
 import "@fontsource-variable/bricolage-grotesque/wght.css";
+import bricolageWght from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2";
+import "../styles/global.css";
 
 export interface Props {
   title?: string;
@@ -35,7 +37,13 @@ const makeTitle = title
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#3E2723" />
-    <ViewTransitions />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href={bricolageWght} />
+    <ClientRouter />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
