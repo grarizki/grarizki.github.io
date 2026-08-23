@@ -1,0 +1,245 @@
+---
+import { Icon } from "astro-icon/components";
+
+// SSR fallback snapshot (top public repos by pushed_at, non-fork, excluding the site repo).
+// Replaced client-side with live GitHub API data when JS runs.
+const fallbackRepos = [
+  {
+    name: "gacha-slot",
+    description:
+      "Single-player casino slot machine in Vue 3 + Vite. 3D neon reels, rigged win-rate that decays each spin, and a roast modal after 100 spins. All audio synthesized in-browser, zero sound files.",
+    language: "Vue",
+    pushed_at: "2026-08-23T13:47:09Z",
+    stargazers_count: 0,
+  },
+  {
+    name: "musgym",
+    description:
+      "Muslim-friendly gym landing site. Dedicated men's and women's floors, a modest dress-code gate, brand-new equipment, and prayer-friendly scheduling. Built with Astro + Tailwind.",
+    language: "Astro",
+    pushed_at: "2026-08-20T05:25:10Z",
+    stargazers_count: 0,
+  },
+  {
+    name: "subtrans",
+    description:
+      "Tauri desktop app for SRT/VTT subtitle editing, ffmpeg embedded-track extraction, and Apple Vision OCR fallback for burned-in subtitles.",
+    language: "TypeScript",
+    pushed_at: "2026-08-18T16:23:13Z",
+    stargazers_count: 0,
+  },
+  {
+    name: "learn-minang-browser-app",
+    description: "Browser app for learning Minangkabau — React + TypeScript + Vite.",
+    language: "TypeScript",
+    pushed_at: "2026-08-13T16:49:40Z",
+    stargazers_count: 0,
+  },
+  {
+    name: "gh-opportunities",
+    description: "Find your next open-source contribution on GitHub.",
+    language: "Rust",
+    pushed_at: "2026-08-11T13:50:00Z",
+    stargazers_count: 1,
+  },
+  {
+    name: "best-japanese-food",
+    description:
+      "Five static Vue apps serving 3,482 Tabelog-rated Japanese restaurants — restaurants, budget eats, bakeries, and a most-recommended list.",
+    language: "TypeScript",
+    pushed_at: "2026-08-09T22:08:15Z",
+    stargazers_count: 0,
+  },
+];
+
+// GitHub language colors (subset; client script has a wider map)
+const langColors = {
+  Vue: "#41b883",
+  TypeScript: "#3178c6",
+  Astro: "#ff5d01",
+  Rust: "#dea584",
+  Python: "#3572A5",
+  JavaScript: "#f1e05a",
+};
+
+function relTime(iso) {
+  const then = new Date(iso).getTime();
+  const diff = then - Date.now();
+  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+  const min = Math.round(diff / 60000);
+  const hr = Math.round(diff / 3600000);
+  const day = Math.round(diff / 86400000);
+  if (Math.abs(min) < 60) return rtf.format(min, "minute");
+  if (Math.abs(hr) < 24) return rtf.format(hr, "hour");
+  if (Math.abs(day) < 30) return rtf.format(day, "day");
+  return rtf.format(Math.round(day / 30), "month");
+}
+
+const particles = [
+  { top: "14%", left: "8%", size: 3, delay: 0.4, dur: 7 },
+  { top: "76%", left: "18%", size: 4, delay: 2.2, dur: 6 },
+  { top: "24%", left: "88%", size: 3, delay: 1.1, dur: 8 },
+  { top: "82%", left: "78%", size: 4, delay: 3.1, dur: 6.5 },
+];
+
+const rainbow = {
+  "--color-1": "hsl(210, 100%, 60%)",
+  "--color-2": "hsl(280, 80%, 65%)",
+  "--color-3": "hsl(330, 100%, 65%)",
+  "--color-4": "hsl(20, 100%, 60%)",
+  "--color-5": "hsl(140, 70%, 50%)",
+};
+
+function cardClass(i) {
+  return [
+    "animate-fade-up bg-white/60 dark:bg-white/5 backdrop-blur-md border rounded-2xl shadow-xl hover:scale-[1.02] transition-all duration-300 hover:bg-white/80 dark:hover:bg-white/10 group p-5 md:p-6 flex flex-col border-white/20 dark:border-white/10",
+  ].join(" ");
+}
+---
+
+<section id="updates" class="scroll-mt-24 relative z-10">
+  <!-- gradient blobs -->
+  <div
+    class="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full blur-[120px]"
+    style="background: color-mix(in srgb, var(--motiq-accent) 24%, transparent)" />
+  <div
+    class="pointer-events-none absolute -bottom-28 -left-24 h-96 w-96 rounded-full blur-[160px]"
+    style="background: color-mix(in srgb, var(--motiq-accent) 15%, transparent)" />
+
+  <!-- floating particles -->
+  {particles.map((p) => (
+    <span
+      class="particle pointer-events-none absolute z-0 rounded-full bg-[var(--motiq-fg)]"
+      style={`top:${p.top};left:${p.left};width:${p.size}px;height:${p.size}px;opacity:.2;animation:float ${p.dur}s ease-in-out ${p.delay}s infinite`}
+    />
+  ))}
+
+  <div class="mt-16 md:mt-0 relative z-10 flex flex-col items-center">
+    <span
+      style={rainbow}
+      class="rainbow-border mb-4 inline-flex rounded-full bg-[linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-3),var(--color-4),var(--color-5))] bg-[length:200%] p-px shadow-sm animate-[rainbow_6s_linear_infinite]">
+      <span
+        class="animate-fade-up block rounded-full bg-[var(--motiq-surface)] px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--motiq-muted)]">
+        Recent Updates
+      </span>
+    </span>
+    <h2
+      class="animate-fade-up text-3xl md:text-4xl lg:text-5xl font-bold lg:tracking-tight text-center"
+      style="animation-delay:.1s">
+      What's Been Updated
+    </h2>
+  </div>
+
+  <div
+    id="updates-grid"
+    class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mx-auto max-w-screen-lg my-8 md:my-12 relative z-10">
+    {fallbackRepos.map((repo, i) => (
+      <article
+        class={cardClass(i)}
+        style={`animation-delay:${0.2 + Math.min(i, 8) * 0.06}s`}>
+        <div class="flex items-start justify-between gap-3 mb-3">
+          <h3 class="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-800 dark:from-white dark:to-gray-400 group-hover:to-black dark:group-hover:to-white transition-all break-words">
+            {repo.name}
+          </h3>
+          <a
+            href={`https://github.com/grarizki/${repo.name}`}
+            target="_blank"
+            rel="noopener"
+            aria-label={`${repo.name} on GitHub`}
+            class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition p-1 shrink-0">
+            <Icon name="simple-icons:github" class="w-5 h-5" />
+          </a>
+        </div>
+
+        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed line-clamp-3 flex-grow mb-4">
+          {repo.description}
+        </p>
+
+        <div class="flex items-center gap-4 text-xs font-mono text-gray-500 dark:text-gray-400 flex-wrap">
+          {repo.language && (
+            <span class="flex items-center gap-1.5">
+              <span
+                class="w-2.5 h-2.5 rounded-full"
+                style={`background:${langColors[repo.language] || "#8b949e"}`}
+                aria-hidden="true" />
+              {repo.language}
+            </span>
+          )}
+          <span>Updated {relTime(repo.pushed_at)}</span>
+          {repo.stargazers_count > 0 && <span>★ {repo.stargazers_count}</span>}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<script>
+  // Live refresh: replace SSR snapshot with fresh GitHub API data (public repos, no token needed).
+  const langColors = {
+    Vue: "#41b883",
+    TypeScript: "#3178c6",
+    Astro: "#ff5d01",
+    Rust: "#dea584",
+    Python: "#3572A5",
+    JavaScript: "#f1e05a",
+    HTML: "#e34c26",
+    CSS: "#563d7c",
+    Dart: "#00B4AB",
+    "C++": "#f34b7d",
+    PHP: "#4F5D95",
+    Go: "#00ADD8",
+  };
+
+  const esc = (s) =>
+    String(s ?? "").replace(/[&<>"']/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]),
+    );
+
+  const relTime = (iso) => {
+    const diff = new Date(iso).getTime() - Date.now();
+    const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+    const min = Math.round(diff / 60000);
+    const hr = Math.round(diff / 3600000);
+    const day = Math.round(diff / 86400000);
+    if (Math.abs(min) < 60) return rtf.format(min, "minute");
+    if (Math.abs(hr) < 24) return rtf.format(hr, "hour");
+    if (Math.abs(day) < 30) return rtf.format(day, "day");
+    return rtf.format(Math.round(day / 30), "month");
+  };
+
+  const card = (r, i) => `
+    <article class="animate-fade-up bg-white/60 dark:bg-white/5 backdrop-blur-md border rounded-2xl shadow-xl hover:scale-[1.02] transition-all duration-300 hover:bg-white/80 dark:hover:bg-white/10 group p-5 md:p-6 flex flex-col border-white/20 dark:border-white/10" style="animation-delay:${0.2 + Math.min(i, 8) * 0.06}s">
+      <div class="flex items-start justify-between gap-3 mb-3">
+        <h3 class="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-800 dark:from-white dark:to-gray-400 group-hover:to-black dark:group-hover:to-white transition-all break-words">${esc(r.name)}</h3>
+        <a href="https://github.com/grarizki/${encodeURIComponent(r.name)}" target="_blank" rel="noopener" aria-label="${esc(r.name)} on GitHub" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition p-1 shrink-0">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 2.87-.39c.97 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+      </div>
+      <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed line-clamp-3 flex-grow mb-4">${esc(r.description) || "No description provided."}</p>
+      <div class="flex items-center gap-4 text-xs font-mono text-gray-500 dark:text-gray-400 flex-wrap">
+        ${r.language ? `<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:${langColors[r.language] || "#8b949e"}" aria-hidden="true"></span>${esc(r.language)}</span>` : ""}
+        <span>Updated ${relTime(r.pushed_at)}</span>
+        ${r.stargazers_count > 0 ? `<span>★ ${r.stargazers_count}</span>` : ""}
+      </div>
+    </article>`;
+
+  (async () => {
+    const grid = document.getElementById("updates-grid");
+    if (!grid) return;
+    try {
+      const res = await fetch(
+        "https://api.github.com/users/grarizki/repos?sort=pushed&per_page=100&type=owner",
+        { headers: { Accept: "application/vnd.github+json" } },
+      );
+      if (!res.ok) return;
+      const repos = await res.json();
+      if (!Array.isArray(repos)) return;
+      const list = repos
+        .filter((r) => !r.fork && r.name !== "grarizki.github.io")
+        .slice(0, 6);
+      if (list.length) grid.innerHTML = list.map(card).join("");
+    } catch {
+      // keep SSR fallback
+    }
+  })();
+</script>
