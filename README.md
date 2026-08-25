@@ -58,7 +58,7 @@ Building high-performance web applications that drive business results.
 ### Fasting Tracker — Cross-platform Mobile App
 > Intermittent fasting app with animated timer, configurable schedules, local notifications, offline-first storage.
 
-**Stack:** Flutter · Dart · Riverpod · sqflite · go_router
+**Stack:** Flutter · Dart · Riverpod · sqlite · go_router
 
 [![GitHub](https://img.shields.io/badge/Code-181717?style=flat-square&logo=github)](https://github.com/grarizki/intermittenApp)
 
