@@ -1,0 +1,91 @@
+---
+import type { RoleExperience, MetricItem } from "../../data/about";
+
+interface Props {
+  experience: RoleExperience;
+  metrics: MetricItem[];
+}
+
+const { experience, metrics } = Astro.props;
+---
+
+<section class="py-24 md:py-36 border-b border-black/[0.06] dark:border-white/[0.08]">
+  <header class="max-w-2xl mb-16 space-y-3">
+    <span class="inline-flex items-center rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+      03 / Production Evidence
+    </span>
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-2">
+      Built through real operational pressure.
+    </h2>
+    <p class="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
+      Years of React and TypeScript work shaped by users, platform delivery, and systems required to keep running through continuous iteration.
+    </p>
+  </header>
+
+  <div class="space-y-8">
+    <!-- Role Card with Doppelrand Architecture -->
+    <div class="p-2 rounded-[2.5rem] bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08]">
+      <div class="p-6 sm:p-10 rounded-[calc(2.5rem-0.5rem)] bg-white dark:bg-zinc-950/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-4 space-y-1.5">
+            <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 font-medium">
+              {experience.period}
+            </span>
+            <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
+              {experience.company}
+            </h3>
+          </div>
+
+          <div class="lg:col-span-8 space-y-6">
+            <div>
+              <h4 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">
+                {experience.title}
+              </h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2.5 leading-relaxed">
+                {experience.description}
+              </p>
+            </div>
+
+            {experience.caseStudyHref && (
+              <div>
+                <!-- Button-in-Button CTA Architecture -->
+                <a
+                  href={experience.caseStudyHref}
+                  class="group inline-flex items-center gap-3 pl-5 pr-1.5 py-1.5 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-mono font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
+                  <span>View production work</span>
+                  <span class="w-7 h-7 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M7 17L17 7"></path>
+                      <path d="M7 7h10v10"></path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrics Grid with Doppelrand Architecture -->
+    <div class="grid sm:grid-cols-3 gap-6">
+      {metrics.map((metric) => (
+        <div class="p-1.5 rounded-[2rem] bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-emerald-500/20">
+          <article class="h-full p-6 sm:p-8 rounded-[calc(2rem-0.375rem)] bg-white dark:bg-zinc-950/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] flex flex-col justify-between">
+            <div class="flex items-baseline gap-2.5">
+              <span class="text-3xl sm:text-4xl font-mono font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
+                {metric.value}
+              </span>
+              <span class="font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                {metric.label}
+              </span>
+            </div>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-4 leading-relaxed">
+              {metric.description}
+            </p>
+          </article>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

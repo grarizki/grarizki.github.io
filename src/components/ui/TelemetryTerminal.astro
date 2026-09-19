@@ -1,0 +1,248 @@
+---
+interface Props {
+  initialChannel?: "agent" | "physics" | "grpc";
+}
+
+const { initialChannel = "agent" } = Astro.props;
+---
+
+<div class="telemetry-terminal-root group relative p-2 rounded-[2rem] bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.1] ring-1 ring-black/5 shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_16px_48px_rgba(16,185,129,0.08)]">
+  
+  <div class="relative overflow-hidden rounded-[calc(2rem-0.5rem)] bg-zinc-950 p-5 sm:p-6 font-mono text-xs text-zinc-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] border border-white/[0.06] space-y-4">
+    <!-- Perpetual CRT Scan Beam Effect -->
+    <div
+      class="absolute inset-0 pointer-events-none overflow-hidden rounded-[calc(2rem-0.5rem)] z-10"
+      aria-hidden="true">
+      <div class="terminal-scan-beam w-full h-12 bg-gradient-to-b from-transparent via-emerald-400/[0.03] to-transparent"></div>
+    </div>
+
+    <!-- Terminal Titlebar -->
+    <div class="relative z-20 flex items-center justify-between border-b border-white/[0.08] pb-3">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+        <span class="text-[11px] text-zinc-400 font-semibold pl-2 tracking-tight">
+          SYS_TERMINAL // telemetry.v2
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2.5 text-[10px] text-zinc-500">
+        <span class="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
+          <span class="phosphor-live-dot w-2 h-2 rounded-full bg-emerald-400"></span>
+          LIVE
+        </span>
+        <span class="hidden sm:inline text-zinc-500">COORD: 104.28, 89.14</span>
+      </div>
+    </div>
+
+    <!-- Channel Selector Tabs -->
+    <div class="relative z-20 flex flex-wrap gap-1.5 border-b border-white/[0.06] pb-3">
+      <button
+        type="button"
+        data-channel="agent"
+        class="channel-btn px-2.5 py-1 rounded-md text-[10px] font-mono font-medium transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+        [AGENT_TRACE]
+      </button>
+      <button
+        type="button"
+        data-channel="physics"
+        class="channel-btn px-2.5 py-1 rounded-md text-[10px] font-mono font-medium transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95 bg-white/5 text-zinc-400 hover:text-zinc-200 border border-white/10">
+        [PHYSICS_SIM]
+      </button>
+      <button
+        type="button"
+        data-channel="grpc"
+        class="channel-btn px-2.5 py-1 rounded-md text-[10px] font-mono font-medium transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95 bg-white/5 text-zinc-400 hover:text-zinc-200 border border-white/10">
+        [GRPC_BENCH]
+      </button>
+    </div>
+
+    <!-- Stream 1: Agent Trace -->
+    <div data-stream="agent" class="stream-panel relative z-20 space-y-1.5 text-[11px] leading-relaxed">
+      <p class="text-zinc-500 stream-line">
+        <span class="text-zinc-600">[09:42:01.042]</span> INIT agent.eval_loop context=128k
+      </p>
+      <p class="text-zinc-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.189]</span> CALL tool.mcp_inspect target="distributed_rpc"
+      </p>
+      <p class="text-emerald-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.320]</span> EXEC tensor_pass latency=1.2ms state=CONVERGED
+      </p>
+      <p class="text-zinc-300 stream-line">
+        <span class="text-zinc-600">[09:42:01.450]</span> STATUS tokens_out=1420 budget_rem=88.4%
+      </p>
+      <p class="text-zinc-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.590]</span> SYNC agent.peer_message routing=DIRECT_NODE
+      </p>
+      <div class="pt-1 flex items-center text-emerald-400 font-semibold stream-line">
+        <span>&gt; pipeline ready</span>
+        <span class="inline-block w-2 h-3 bg-emerald-400 animate-pulse ml-1 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+      </div>
+    </div>
+
+    <!-- Stream 2: Physics Sim -->
+    <div data-stream="physics" class="stream-panel relative z-20 space-y-1.5 text-[11px] leading-relaxed hidden">
+      <p class="text-zinc-500 stream-line">
+        <span class="text-zinc-600">[09:42:01.010]</span> RESOLVE boundary_conditions field=electrodynamics
+      </p>
+      <p class="text-zinc-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.120]</span> EIGENSTATE vector=[0.7071, 0.0000, 0.7071, 0.0000]
+      </p>
+      <p class="text-emerald-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.240]</span> RUNGE_KUTTA step_size=0.001 error_norm=3.2e-7
+      </p>
+      <p class="text-zinc-300 stream-line">
+        <span class="text-zinc-600">[09:42:01.380]</span> HAMILTONIAN H_total=4.182e-18 J state=CONSERVED
+      </p>
+      <p class="text-zinc-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.510]</span> NAVIER_STOKES spatial_mesh=512x512 reynolds=2400
+      </p>
+      <div class="pt-1 flex items-center text-emerald-400 font-semibold stream-line">
+        <span>&gt; equilibrium sustained</span>
+        <span class="inline-block w-2 h-3 bg-emerald-400 animate-pulse ml-1 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+      </div>
+    </div>
+
+    <!-- Stream 3: gRPC Bench -->
+    <div data-stream="grpc" class="stream-panel relative z-20 space-y-1.5 text-[11px] leading-relaxed hidden">
+      <p class="text-zinc-500 stream-line">
+        <span class="text-zinc-600">[09:42:01.002]</span> RPC bfi.finance.portal/GetUserData status=200
+      </p>
+      <p class="text-emerald-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.115]</span> LATENCY p50=0.4ms p90=0.9ms p99=1.4ms
+      </p>
+      <p class="text-zinc-300 stream-line">
+        <span class="text-zinc-600">[09:42:01.218]</span> CMS_CACHE hit_rate=94.2% dedupe_factor=5.8x
+      </p>
+      <p class="text-emerald-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.345]</span> LCP_METRIC target=400ms measured=380ms STATUS=PASS
+      </p>
+      <p class="text-zinc-400 stream-line">
+        <span class="text-zinc-600">[09:42:01.490]</span> ISR_PIPELINE revalidate=60s memory_stable=128MB
+      </p>
+      <div class="pt-1 flex items-center text-emerald-400 font-semibold stream-line">
+        <span>&gt; latency nominal</span>
+        <span class="inline-block w-2 h-3 bg-emerald-400 animate-pulse ml-1 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+      </div>
+    </div>
+
+    <!-- Terminal Footer Telemetry -->
+    <div class="relative z-20 pt-3 border-t border-white/[0.08] flex items-center justify-between text-[10px] text-zinc-500">
+      <span id="footer-ticker">CPU: 4.2% · MEM: 182MB</span>
+      <span class="text-emerald-400 font-medium">NODE: ACTIVE</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes scanBeam {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(600%);
+    }
+  }
+
+  .terminal-scan-beam {
+    animation: scanBeam 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes phosphorPulse {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+    }
+    50% {
+      opacity: 0.5;
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
+    }
+  }
+
+  .phosphor-live-dot {
+    animation: phosphorPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes streamLineIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stream-panel:not(.hidden) > .stream-line {
+    animation: streamLineIn 0.35s cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+
+  .stream-panel:not(.hidden) > .stream-line:nth-child(1) { animation-delay: 0.03s; }
+  .stream-panel:not(.hidden) > .stream-line:nth-child(2) { animation-delay: 0.07s; }
+  .stream-panel:not(.hidden) > .stream-line:nth-child(3) { animation-delay: 0.11s; }
+  .stream-panel:not(.hidden) > .stream-line:nth-child(4) { animation-delay: 0.15s; }
+  .stream-panel:not(.hidden) > .stream-line:nth-child(5) { animation-delay: 0.19s; }
+  .stream-panel:not(.hidden) > .stream-line:nth-child(6) { animation-delay: 0.23s; }
+</style>
+
+<script>
+  function setupTerminal() {
+    const roots = document.querySelectorAll(".telemetry-terminal-root");
+    roots.forEach((root) => {
+      const buttons = root.querySelectorAll(".channel-btn");
+      const streams = root.querySelectorAll(".stream-panel");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-channel");
+
+          // Update buttons styling with active glow
+          buttons.forEach((b) => {
+            b.classList.remove("bg-emerald-500/20", "text-emerald-300", "border-emerald-500/40", "shadow-[0_0_12px_rgba(16,185,129,0.15)]");
+            b.classList.add("bg-white/5", "text-zinc-400", "border-white/10");
+          });
+          btn.classList.add("bg-emerald-500/20", "text-emerald-300", "border-emerald-500/40", "shadow-[0_0_12px_rgba(16,185,129,0.15)]");
+          btn.classList.remove("bg-white/5", "text-zinc-400", "border-white/10");
+
+          // Show corresponding stream and trigger animation
+          streams.forEach((s) => {
+            if (s.getAttribute("data-stream") === target) {
+              s.classList.remove("hidden");
+              // Re-trigger animation by cloning and replacing or quick class toggle
+              const lines = s.querySelectorAll(".stream-line");
+              lines.forEach((line) => {
+                line.classList.remove("stream-line");
+                void (line as HTMLElement).offsetWidth;
+                line.classList.add("stream-line");
+              });
+            } else {
+              s.classList.add("hidden");
+            }
+          });
+        });
+      });
+    });
+
+    // Simulated real-time metrics ticker in footer
+    const tickers = document.querySelectorAll("#footer-ticker");
+    if (tickers.length > 0) {
+      let tickIndex = 0;
+      const metrics = [
+        "CPU: 4.2% · MEM: 182MB",
+        "CPU: 3.8% · MEM: 184MB · PING: 0.8ms",
+        "CPU: 4.5% · MEM: 181MB · PING: 1.1ms",
+        "CPU: 4.1% · MEM: 183MB · PACKETS: 4.8k/s"
+      ];
+      setInterval(() => {
+        tickIndex = (tickIndex + 1) % metrics.length;
+        tickers.forEach((t) => {
+          t.textContent = metrics[tickIndex];
+        });
+      }, 3000);
+    }
+  }
+
+  document.addEventListener("astro:page-load", setupTerminal);
+</script>

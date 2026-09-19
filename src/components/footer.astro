@@ -1,19 +1,16 @@
 ---
 import Container from "./container.astro";
+
+const year = new Date().getFullYear();
 ---
 
-<footer class="my-20" role="contentinfo">
+<footer class="py-16 border-t border-black/[0.08] dark:border-white/[0.1]" role="contentinfo">
   <Container>
-    <p class="text-center text-sm text-slate-600 dark:text-slate-400">
-      . Copyright © {new Date().getFullYear()} .
-      <a
-        href="https://grarizki.github.io"
-        target="_blank"
-        rel="noopener"
-        class="underline underline-offset-2 hover:text-emerald-600 dark:hover:text-emerald-400 transition">
-        Raka Grarizki
-      </a>
-      . All rights reserved .
-    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-600 dark:text-zinc-400">
+      <span>© {year} Raka Grarizki</span>
+      <span class="text-center sm:text-right font-medium tracking-wide text-zinc-700 dark:text-zinc-300">
+        DISCIPLINE: FIRST_PRINCIPLES // CORE: DISTRIBUTED_SYS
+      </span>
+    </div>
   </Container>
 </footer>

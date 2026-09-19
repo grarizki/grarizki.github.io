@@ -1,75 +1,67 @@
 ---
-import Link from "@components/ui/link.astro";
-
-// Static SSR — deterministic particle field, no runtime entropy
-const particles = [
-  { top: "16%", left: "10%", size: 4, delay: 0, dur: 6 },
-  { top: "30%", left: "22%", size: 3, delay: 1.2, dur: 7 },
-  { top: "12%", left: "38%", size: 5, delay: 2.1, dur: 5.5 },
-  { top: "68%", left: "14%", size: 3, delay: 0.6, dur: 8 },
-  { top: "80%", left: "28%", size: 4, delay: 3, dur: 6.5 },
-  { top: "22%", left: "62%", size: 3, delay: 1.8, dur: 7.5 },
-  { top: "74%", left: "48%", size: 5, delay: 0.9, dur: 6 },
-  { top: "16%", left: "84%", size: 3, delay: 2.6, dur: 7 },
-  { top: "60%", left: "78%", size: 4, delay: 1.4, dur: 8.5 },
-  { top: "86%", left: "88%", size: 3, delay: 3.4, dur: 6 },
-  { top: "42%", left: "90%", size: 4, delay: 0.3, dur: 7.5 },
-];
-
-// Rainbow sweep palette (same hues as ruixen hero)
-const rainbow = {
-  "--color-1": "hsl(210, 100%, 60%)", // Blue
-  "--color-2": "hsl(280, 80%, 65%)",  // Purple
-  "--color-3": "hsl(330, 100%, 65%)", // Pink
-  "--color-4": "hsl(20, 100%, 60%)",  // Orange
-  "--color-5": "hsl(140, 70%, 50%)",  // Green
-};
+import TelemetryTerminal from "@components/ui/TelemetryTerminal.astro";
 ---
 
-<section
-  class="grid lg:grid-cols-1 place-items-center pt-10 pb-6 md:pt-12 md:pb-18 relative z-10">
-  <!-- gradient blobs -->
-  <div
-    class="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full blur-[120px]"
-    style="background: color-mix(in srgb, var(--motiq-accent) 28%, transparent)" />
-  <div
-    class="pointer-events-none absolute -bottom-28 -right-24 h-96 w-96 rounded-full blur-[160px]"
-    style="background: color-mix(in srgb, var(--motiq-accent) 18%, transparent)" />
+<section class="py-16 md:py-28 border-b border-black/[0.06] dark:border-white/[0.08]">
+  <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <div class="lg:col-span-8 space-y-8">
+      <div>
+        <span class="inline-flex items-center rounded-full px-3.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+          00 / Software Engineer & Systems Architect
+        </span>
+      </div>
 
-  <!-- floating particles -->
-  {particles.map((p) => (
-    <span
-      class="particle pointer-events-none absolute z-0 rounded-full bg-[var(--motiq-fg)]"
-      style={`top:${p.top};left:${p.left};width:${p.size}px;height:${p.size}px;opacity:.2;animation:float ${p.dur}s ease-in-out ${p.delay}s infinite`}
-    />
-  ))}
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.12]">
+        I turn complex product workflows into high-performance web systems.
+      </h1>
 
-  <div
-    class="relative z-10 flex flex-col items-center gap-5 max-w-4xl mx-auto w-full text-center">
-    <span
-      style={rainbow}
-      class="rainbow-border inline-flex rounded-full bg-[linear-gradient(90deg,var(--color-1),var(--color-2),var(--color-3),var(--color-4),var(--color-5))] bg-[length:200%] p-px shadow-sm animate-[rainbow_6s_linear_infinite]">
-      <span
-        class="animate-fade-up block rounded-full bg-[var(--motiq-surface)] px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--motiq-muted)]">
-        Software Engineer
-      </span>
-    </span>
-    <h1
-      class="animate-fade-up text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600 dark:from-white dark:to-gray-400 text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-center leading-tight"
-      style="animation-delay:.1s">
-      Building High-Performance Web Applications.
-    </h1>
-    <p
-      class="animate-fade-up text-gray-900 dark:text-gray-300 text-base md:text-lg mt-1 md:mt-2 text-center max-w-2xl mx-auto"
-      style="animation-delay:.2s">
-      Software Engineer building high-performance web apps, AI-powered tools, and cross-platform mobile applications.
-      Full-stack across React, FastAPI, NestJS, and Flutter.
-    </p>
-    <div
-      class="animate-fade-up mt-2 md:mt-4 flex flex-wrap items-center justify-center gap-4"
-      style="animation-delay:.3s">
-      <Link href="/about">About Me</Link>
-      <Link href="/contact" style="outline">Get in Touch</Link>
+      <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
+        Software Engineer at PT. BFI Finance Indonesia. I lead frontend performance optimization, build agentic AI pipelines, and engineer full-stack microservices across React, Next.js, Astro, and FastAPI.
+      </p>
+
+      <div class="flex flex-wrap gap-2.5 pt-1">
+        <span class="px-3.5 py-1.5 text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 rounded-full">
+          Frontend performance
+        </span>
+        <span class="px-3.5 py-1.5 text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 rounded-full">
+          Full stack architecture
+        </span>
+        <span class="px-3.5 py-1.5 text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 rounded-full">
+          Agentic AI systems
+        </span>
+      </div>
+
+      <!-- Button-in-Button Actions -->
+      <div class="pt-3 flex flex-wrap items-center gap-4">
+        <a
+          href="/work"
+          class="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-mono font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] shadow-sm">
+          <span>Explore case studies</span>
+          <span class="w-8 h-8 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </span>
+        </a>
+
+        <a
+          href="/blog"
+          class="group inline-flex items-center gap-3 pl-5 pr-2 py-2 rounded-full border border-black/[0.08] dark:border-white/[0.12] bg-black/[0.02] dark:bg-white/[0.04] text-xs font-mono text-zinc-800 dark:text-zinc-200 hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
+          <span>Read technical writing</span>
+          <span class="w-7 h-7 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Cybernetic Telemetry Command Card -->
+    <div class="lg:col-span-4 w-full">
+      <TelemetryTerminal />
     </div>
   </div>
 </section>

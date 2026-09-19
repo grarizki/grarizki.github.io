@@ -14,7 +14,7 @@ const counterpartLabel = isId ? "English" : "Bahasa Indonesia";
   <!-- Reading progress bar -->
   <div
     id="reading-progress"
-    class="fixed top-0 left-0 w-0 h-[3px] bg-emerald-500 dark:bg-emerald-400 z-50 transition-[width] duration-100"
+    class="fixed top-0 left-0 w-0 h-[3px] bg-emerald-500 z-50 transition-[width] duration-100"
     role="progressbar"
     aria-valuenow="0"
     aria-valuemin="0"
@@ -22,56 +22,69 @@ const counterpartLabel = isId ? "English" : "Bahasa Indonesia";
     aria-label="Reading progress">
   </div>
 
-  <Container>
-    <div class="mx-auto max-w-[735px] mt-14">
-      <div class="flex justify-end mb-4">
-        <a
-          href={`/blog/${counterpartSlug}`}
-          class="text-sm text-emerald-600 dark:text-emerald-400 hover:underline font-medium"
-          >{counterpartLabel}</a
-        >
-      </div>
-      <span
-        class="text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-sm font-medium">
-        {frontmatter.category}
-      </span>
-      <h1
-        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight text-black dark:text-white">
-        {frontmatter.title}
-      </h1>
-      <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-600 dark:text-gray-400">
-          {frontmatter.author}
-        </span>
-        <span class="text-gray-500 dark:text-gray-500">•</span>
-        <time
-          class="text-gray-600 dark:text-gray-400"
-          datetime={frontmatter.publishDate}>
-          {getFormattedDate(frontmatter.publishDate)}
-        </time>
-        <span class="text-gray-500 dark:text-gray-500 hidden md:block">•</span>
-        <div class="w-full md:w-auto flex flex-wrap gap-3">
-          {
-            frontmatter.tags.map((tag: string) => (
-              <span class="text-sm text-gray-500 dark:text-gray-400">
-                #{tag}
-              </span>
-            ))
-          }
-        </div>
-      </div>
-    </div>
+  <Container class="max-w-4xl">
+    <article class="py-16 md:py-24">
+      <!-- Article Header Enclosure -->
+      <header class="p-2 rounded-[2.5rem] bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.1] mb-12">
+        <div class="p-6 sm:p-10 rounded-[calc(2.5rem-0.5rem)] bg-white dark:bg-zinc-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] space-y-6">
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <span class="inline-flex items-center rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
+              PUBLICATION // {frontmatter.category}
+            </span>
 
-    <div class="mx-auto prose prose-lg dark:prose-invert mt-6 prose-headings:text-black dark:prose-headings:text-white prose-a:text-emerald-600 dark:prose-a:text-emerald-400 prose-strong:text-black dark:prose-strong:text-white prose-code:text-emerald-700 dark:prose-code:text-emerald-300 prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950">
-      <slot />
-    </div>
-    <div class="text-center mt-8 mb-16">
-      <a
-        href="/blog"
-        class="bg-gray-100 dark:bg-white/10 text-black dark:text-white px-5 py-3 rounded-md hover:bg-gray-200 dark:hover:bg-white/20 transition border border-gray-200 dark:border-white/10"
-        >← Back to Blog</a
-      >
-    </div>
+            <a
+              href={`/blog/${counterpartSlug}`}
+              class="text-xs font-mono text-emerald-700 dark:text-emerald-400 hover:underline font-medium px-2.5 py-1 rounded-md bg-emerald-500/5 border border-emerald-500/20">
+              Read in {counterpartLabel} →
+            </a>
+          </div>
+
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+            {frontmatter.title}
+          </h1>
+
+          <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800/80 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-zinc-600 dark:text-zinc-400">
+            <div class="flex items-center gap-3">
+              <span>{frontmatter.author}</span>
+              <span>·</span>
+              <time datetime={frontmatter.publishDate}>
+                {getFormattedDate(frontmatter.publishDate)}
+              </time>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5">
+              {
+                frontmatter.tags.map((tag: string) => (
+                  <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800 text-[11px]">
+                    #{tag}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Article Prose Body -->
+      <div class="prose prose-lg dark:prose-invert mx-auto max-w-none text-zinc-800 dark:text-zinc-200 prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-50 prose-a:text-emerald-600 dark:prose-a:text-emerald-400 prose-strong:text-zinc-900 dark:prose-strong:text-zinc-50 prose-code:font-mono prose-code:text-emerald-700 dark:prose-code:text-emerald-300 prose-pre:rounded-2xl prose-pre:border prose-pre:border-black/[0.08] dark:prose-pre:border-white/[0.1] leading-relaxed">
+        <slot />
+      </div>
+
+      <!-- Navigation Footer -->
+      <div class="pt-16 mt-16 border-t border-zinc-200 dark:border-zinc-800 flex justify-center">
+        <a
+          href="/blog"
+          class="group inline-flex items-center gap-3 pl-4 pr-6 py-2.5 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-mono font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
+          <span class="w-6 h-6 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-translate-x-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5"></path>
+              <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+          </span>
+          <span>Return to all publications</span>
+        </a>
+      </div>
+    </article>
   </Container>
 
   <script>

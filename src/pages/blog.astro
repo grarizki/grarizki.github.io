@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import { Picture } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
 
 // Filter blog entries with 'draft: false' & date before current date
 const publishedBlogEntries = await getCollection("blog", ({ data }) => {
@@ -16,64 +15,91 @@ publishedBlogEntries.sort(function (a, b) {
 });
 ---
 
-<Layout title="Blog">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Our Blog</Fragment>
-      <Fragment slot="desc">
-        We write about building startups and thoughts going on our mind.
-      </Fragment>
-    </Sectionhead>
-    <main class="mt-16">
-      <ul
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto px-6">
+<Layout title="Technical Writing & Case Studies">
+  <Container class="max-w-6xl">
+    <section class="py-20 md:py-32">
+      <!-- Section Header -->
+      <header class="max-w-3xl mb-16 space-y-3">
+        <span class="inline-flex items-center rounded-full px-3.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
+          03 / Technical Publications
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+          Thinking in systems, performance, and distributed architecture.
+        </h1>
+        <p class="text-zinc-700 dark:text-zinc-300 text-base sm:text-lg leading-relaxed">
+          Production case studies, performance benchmarks, and analytical engineering write-ups.
+        </p>
+      </header>
+
+      <!-- Publications Grid with Doppelrand Architecture -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {
-          publishedBlogEntries.map((blogPostEntry, index) => (
-            <li>
-              <a href={`/blog/${blogPostEntry.id}`}>
-                <div class="flex flex-col h-full bg-white dark:bg-white/5 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-white/10 hover:shadow-xl transition-shadow duration-300">
-                  <div class="relative aspect-video overflow-hidden">
+          publishedBlogEntries.map((post, index) => (
+            <div class="p-2 rounded-[2rem] bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.1] hover:border-emerald-500/40 transition-all duration-500 flex flex-col">
+              <article class="h-full p-5 sm:p-6 rounded-[calc(2rem-0.5rem)] bg-white dark:bg-zinc-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] flex flex-col justify-between">
+                <div>
+                  <!-- Article Thumbnail Enclosure -->
+                  <div class="relative aspect-video rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800/80 mb-5 bg-zinc-100 dark:bg-zinc-900">
                     <Picture
-                      src={blogPostEntry.data.image.src}
-                      alt={blogPostEntry.data.image.alt}
-                      sizes="(max-width: 800px) 100vw, 800px"
+                      src={post.data.image.src}
+                      alt={post.data.image.alt}
+                      sizes="(max-width: 800px) 100vw, 400px"
                       width={800}
                       height={450}
                       loading={index <= 2 ? "eager" : "lazy"}
                       decoding={index <= 2 ? "sync" : "async"}
-                      class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-105"
                     />
                   </div>
-                  <div class="p-6 flex flex-col flex-grow">
-                    <span class="text-blue-400 uppercase tracking-wider text-sm font-medium mb-2">
-                      {blogPostEntry.data.category}
+
+                  <!-- Category & Telemetry Header -->
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                      {post.data.category}
                     </span>
-
-                    <h2 class="text-2xl font-bold leading-snug tracking-tight mb-3 line-clamp-2">
-                      {blogPostEntry.data.title}
-                    </h2>
-
-                    <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 flex-grow">
-                      {blogPostEntry.data.snippet}
-                    </p>
-
-                    <div class="flex justify-between items-center mt-auto pt-4 border-t border-gray-100 dark:border-white/10">
-                      <span class="text-gray-400 text-sm">
-                        {blogPostEntry.data.author}
-                      </span>
-                      <time
-                        class="text-gray-400 text-sm"
-                        datetime={blogPostEntry.data.publishDate.toISOString()}>
-                        {blogPostEntry.data.publishDate.toDateString()}
-                      </time>
-                    </div>
+                    <time
+                      class="font-mono text-[11px] text-zinc-500"
+                      datetime={post.data.publishDate.toISOString()}>
+                      {post.data.publishDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+                    </time>
                   </div>
+
+                  <!-- Headline -->
+                  <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-snug line-clamp-2">
+                    <a href={`/blog/${post.id}`} class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h2>
+
+                  <!-- Snippet -->
+                  <p class="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 mt-2.5 line-clamp-3 leading-relaxed">
+                    {post.data.snippet}
+                  </p>
                 </div>
-              </a>
-            </li>
+
+                <!-- Footer with Button-in-Button CTA -->
+                <div class="pt-6 mt-6 border-t border-zinc-200 dark:border-zinc-800/80 flex items-center justify-between">
+                  <span class="font-mono text-[11px] text-zinc-500">
+                    {post.data.author}
+                  </span>
+
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="group inline-flex items-center gap-2 pl-3.5 pr-1.5 py-1 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-mono font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
+                    <span>Read</span>
+                    <span class="w-5 h-5 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7"></path>
+                        <path d="M7 7h10v10"></path>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </article>
+            </div>
           ))
         }
-      </ul>
-    </main>
+      </div>
+    </section>
   </Container>
 </Layout>

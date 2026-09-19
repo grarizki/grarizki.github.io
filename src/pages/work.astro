@@ -1,84 +1,210 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
 ---
 
 <Layout title="Work Experience">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Work Experience</Fragment>
-      <Fragment slot="desc"> </Fragment>
-    </Sectionhead>
-
-    <div
-      class="grid lg:grid-cols-1 md:grid-rows-2 gap-10 mx-auto max-w-screen-lg my-12 relative z-10">
-      <div
-        class="bg-white/5 backdrop-blur-md border border-white/10 p-8 m-4 rounded-2xl shadow-2xl hover:scale-[1.02] transition-all duration-300 hover:bg-white/10 group">
-        <div class="flex justify-between items-start mb-4">
-          <h3
-            class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 group-hover:to-white transition-all">
-            Software Engineer, PT. BFI Finance Indonesia
-          </h3>
-          <span
-            class="text-blue-400 text-sm font-mono border border-blue-400/30 px-2 py-1 rounded"
-            >Nov 2022 — Present</span
-          >
-        </div>
-        <p class="text-gray-400 mb-4 text-sm uppercase tracking-wider">
-          BSD, Indonesia
+  <Container class="max-w-5xl">
+    <section class="py-20 md:py-32">
+      <!-- Section Header -->
+      <header class="max-w-2xl mb-16 space-y-3">
+        <span class="inline-flex items-center rounded-full px-3.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
+          02 / Production Work Experience
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+          Engineered under enterprise delivery pressure.
+        </h1>
+        <p class="text-zinc-700 dark:text-zinc-300 text-base sm:text-lg leading-relaxed">
+          Detailed case studies of frontend platform architecture, measured speedups, and resilient distributed services.
         </p>
-        <ul class="list-disc ml-5 text-gray-300 space-y-2">
-          <li>
-            <strong class="text-white">UI Redesign:</strong> Redesigned company website's
-            user interface to align with modern UX standards, improving navigation
-            and interactivity. This initiative led to a 20% increase in user engagement
-            and a 15% rise in conversion rates.
-          </li>
-          <li>
-            <strong class="text-white">Mobile-First:</strong> Developed and implemented
-            a fully responsive, mobile-first design, optimizing layouts and interactions
-            for seamless mobile experience, increasing mobile traffic surged by 25%.
-          </li>
-          <li>
-            <strong class="text-white">Performance:</strong> Collaborated with backend
-            engineers to streamline website performance, optimizing assets, API calls,
-            and caching strategies. These improvements led to a 40% reduction in
-            page loading.
-          </li>
-        </ul>
-      </div>
+      </header>
 
-      <div
-        class="bg-white/5 backdrop-blur-md border border-white/10 p-8 m-4 rounded-2xl shadow-2xl hover:scale-[1.02] transition-all duration-300 hover:bg-white/10 group">
-        <div class="flex justify-between items-start mb-4">
-          <h3
-            class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 group-hover:to-white transition-all">
-            Frontend Developer, PT. Nusa Data Hexamatika
-          </h3>
-          <span
-            class="text-blue-400 text-sm font-mono border border-blue-400/30 px-2 py-1 rounded"
-            >Dec 2021 — Nov 2022</span
-          >
+      <!-- Timeline Rail Architecture -->
+      <div class="relative pl-6 md:pl-10 border-l border-zinc-300 dark:border-zinc-800 space-y-12">
+        
+        <!-- Case Study 1: PT. BFI Finance Indonesia -->
+        <div class="relative group">
+          <!-- Terminal Node Marker -->
+          <span class="absolute -left-[31px] md:-left-[47px] top-6 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-4 ring-white dark:ring-[#09090B] flex items-center justify-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-white dark:bg-zinc-950 animate-ping"></span>
+          </span>
+
+          <!-- Doppelrand Hardware Enclosure -->
+          <div class="p-2 rounded-[2.5rem] bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.1] shadow-xl">
+            <article class="p-6 sm:p-10 rounded-[calc(2.5rem-0.5rem)] bg-white dark:bg-zinc-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] space-y-8">
+              <!-- Header Block -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-200 dark:border-zinc-800/80 pb-6">
+                <div>
+                  <span class="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">
+                    PRODUCTION_CORE // CASE_STUDY_01
+                  </span>
+                  <h2 class="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight mt-1">
+                    Software Engineer, PT. BFI Finance Indonesia
+                  </h2>
+                  <p class="text-xs sm:text-sm font-mono text-zinc-700 dark:text-zinc-300 mt-1">
+                    Indonesia's largest multifinance enterprise · BSD, South Tangerang
+                  </p>
+                </div>
+
+                <div class="self-start sm:self-auto">
+                  <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30">
+                    Nov 2022 — Present
+                  </span>
+                </div>
+              </div>
+
+              <!-- Context & Challenge -->
+              <div class="space-y-3">
+                <h3 class="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">
+                  Platform Challenge
+                </h3>
+                <p class="text-sm sm:text-base text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                  The primary marketing and customer portals experienced heavy server latency under peak traffic. Dynamic server-side rendering caused high database load, redundant API requests, and slow initial viewport paint times for mobile users across Indonesia.
+                </p>
+              </div>
+
+              <!-- Key Technical Interventions -->
+              <div class="space-y-4">
+                <h3 class="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">
+                  Engineering Solutions
+                </h3>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div class="p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 space-y-2">
+                    <span class="font-mono text-xs text-emerald-700 dark:text-emerald-400 font-bold">
+                      [97% LCP SPEEDUP // ISR PIPELINE]
+                    </span>
+                    <p class="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      Replaced unstable server-rendered blog paths with Incremental Static Regeneration (60s revalidation). Improved Largest Contentful Paint from 13.0s to 0.4s.
+                    </p>
+                  </div>
+
+                  <div class="p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 space-y-2">
+                    <span class="font-mono text-xs text-emerald-700 dark:text-emerald-400 font-bold">
+                      [50-60% CMS DEDUPLICATION]
+                    </span>
+                    <p class="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      Implemented React.cache() query deduplication across 14 critical endpoints. Reduced external CMS queries from 10 calls to 2 per page request.
+                    </p>
+                  </div>
+
+                  <div class="p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 space-y-2">
+                    <span class="font-mono text-xs text-emerald-700 dark:text-emerald-400 font-bold">
+                      [MEMORY STABILIZATION]
+                    </span>
+                    <p class="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      Eliminated server memory spikes and out-of-memory risks by caching static payloads and pruning nested query parameters.
+                    </p>
+                  </div>
+
+                  <div class="p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 space-y-2">
+                    <span class="font-mono text-xs text-emerald-700 dark:text-emerald-400 font-bold">
+                      [CONVERSION & MOBILE-FIRST]
+                    </span>
+                    <p class="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      Engineered mobile-first navigation systems, producing a 25% increase in mobile traffic and a 15% increase in lead conversions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800/80 flex flex-wrap gap-2">
+                <span class="px-3 py-1 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-md">
+                  React 19
+                </span>
+                <span class="px-3 py-1 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-md">
+                  Next.js App Router
+                </span>
+                <span class="px-3 py-1 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-md">
+                  TypeScript
+                </span>
+                <span class="px-3 py-1 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-md">
+                  FastAPI
+                </span>
+                <span class="px-3 py-1 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-md">
+                  React.cache()
+                </span>
+              </div>
+            </article>
+          </div>
         </div>
-        <p class="text-gray-400 mb-4 text-sm uppercase tracking-wider">
-          North Jakarta, Indonesia
-        </p>
-        <ul class="list-disc ml-5 text-gray-300 space-y-2">
-          <li>
-            <strong class="text-white">User-Centric Solutions:</strong> Engaged with
-            users and customers to gather feedback and identify pain points, then
-            translated insights into actionable solutions. This initiative led to
-            improved user satisfaction and adoption rates.
-          </li>
-          <li>
-            <strong class="text-white">Quality & Performance:</strong> Led efforts
-            to maintain, optimize, and troubleshoot website functionality, collaborating
-            with backend developers to resolve issues and enhance performance. Ensured
-            high quality standards and brand consistency.
-          </li>
-        </ul>
+
+        <!-- Case Study 2: PT. Nusa Data Hexamatika -->
+        <div class="relative group">
+          <!-- Terminal Node Marker -->
+          <span class="absolute -left-[31px] md:-left-[47px] top-6 w-3.5 h-3.5 rounded-full bg-zinc-400 dark:bg-zinc-600 ring-4 ring-white dark:ring-[#09090B] flex items-center justify-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-white dark:bg-zinc-950"></span>
+          </span>
+
+          <!-- Doppelrand Hardware Enclosure -->
+          <div class="p-2 rounded-[2.5rem] bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.1] shadow-xl">
+            <article class="p-6 sm:p-10 rounded-[calc(2.5rem-0.5rem)] bg-white dark:bg-zinc-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] space-y-8">
+              <!-- Header Block -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-200 dark:border-zinc-800/80 pb-6">
+                <div>
+                  <span class="font-mono text-xs uppercase tracking-widest text-zinc-600 dark:text-zinc-400 font-semibold">
+                    HISTORICAL_CORE // CASE_STUDY_02
+                  </span>
+                  <h2 class="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight mt-1">
+                    Frontend Developer, PT. Nusa Data Hexamatika
+                  </h2>
+                  <p class="text-xs sm:text-sm font-mono text-zinc-700 dark:text-zinc-300 mt-1">
+                    Software Development Agency · North Jakarta
+                  </p>
+                </div>
+
+                <div class="self-start sm:self-auto">
+                  <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800">
+                    Dec 2021 — Nov 2022
+                  </span>
+                </div>
+              </div>
+
+              <!-- Context & Solutions -->
+              <div class="space-y-4">
+                <p class="text-sm sm:text-base text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                  Collaborated with backend engineers and product designers to build client web applications. Built reusable component systems, standardized state patterns, and ensured cross-browser consistency across diverse devices.
+                </p>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div class="p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 space-y-2">
+                    <span class="font-mono text-xs text-zinc-900 dark:text-zinc-100 font-bold">
+                      [COMPONENT REUSABILITY]
+                    </span>
+                    <p class="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      Standardized core UI design patterns across three concurrent client platforms, cutting subsequent feature delivery time by 30%.
+                    </p>
+                  </div>
+
+                  <div class="p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 space-y-2">
+                    <span class="font-mono text-xs text-zinc-900 dark:text-zinc-100 font-bold">
+                      [CLIENT DELIVERY]
+                    </span>
+                    <p class="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      Shipped five production marketing platforms with accessible HTML5, responsive CSS layouts, and fast initial paint times.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800/80 flex flex-wrap gap-2">
+                <span class="px-3 py-1 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-md">
+                  JavaScript
+                </span>
+                <span class="px-3 py-1 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-md">
+                  Component Systems
+                </span>
+                <span class="px-3 py-1 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-md">
+                  HTML5 / CSS3
+                </span>
+              </div>
+            </article>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
   </Container>
 </Layout>

@@ -1,78 +1,73 @@
 ---
 const techStack = [
-  "Python",
+  "React",
   "Next.js",
   "Astro",
-  "React",
   "TypeScript",
-  "FastAPI",
   "Tailwind CSS",
-  "Node.js",
+  "FastAPI",
+  "NestJS",
+  "Flutter",
+  "Docker",
+  "PostgreSQL",
 ];
 ---
 
-<section id="about" class="scroll-mt-24 relative z-10">
-  <div class="mt-16 text-center">
-    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold lg:tracking-tight text-black dark:text-white">
-      About Me
-    </h2>
-    <p class="text-lg mt-4 text-slate-600 dark:text-slate-400">
-      Performance-Driven Software Engineer
-    </p>
-  </div>
-
-  <div class="grid md:grid-cols-2 gap-6 md:gap-12 mx-auto max-w-screen-lg mt-8 md:mt-12">
-    <div class="bg-white/5 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 p-5 md:p-8 rounded-2xl shadow-2xl transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/20">
-      <h3 class="text-2xl font-bold text-black dark:text-white mb-4">
-        Who I Am
-      </h3>
-      <p class="text-black dark:text-gray-300 leading-relaxed mb-6">
-        Hi! I'm a <strong>Software Engineer</strong> based in Jakarta, Indonesia.
-        I work across the full stack —
-        <span class="text-emerald-600 dark:text-emerald-400 font-semibold">React, Next.js, Astro</span> on the frontend;
-        <strong>FastAPI, NestJS, Node.js</strong> on the backend;
-        and <strong>Flutter</strong> for mobile. I also build agentic AI pipelines, real-time microservices, and CLI-first developer tooling.
-      </p>
-
-      <h3 class="text-lg font-semibold text-black dark:text-white mb-3">
-        Tech Stack
-      </h3>
-      <div class="flex flex-wrap gap-2 mb-8">
-        {techStack.map((tech) => (
-          <span class="px-3 py-1 text-xs font-mono text-emerald-800 dark:text-emerald-200 bg-emerald-400/20 dark:bg-emerald-500/10 backdrop-blur-md border border-emerald-400/20 dark:border-emerald-500/20 rounded-full shadow-sm">
-            {tech}
+<section id="about-summary" class="py-24 md:py-36 border-b border-black/[0.06] dark:border-white/[0.08]">
+  <div class="p-2 rounded-[2.5rem] bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08]">
+    <div class="p-8 sm:p-14 rounded-[calc(2.5rem-0.5rem)] bg-white dark:bg-zinc-950/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
+      <div class="grid lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7 space-y-6">
+          <span class="inline-flex items-center rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            03 / About the Engineer
           </span>
-        ))}
-      </div>
 
-      <div class="flex gap-4">
-        <a href="mailto:raka.grarizki@gmail.com" class="bg-black text-white hover:bg-emerald-600 dark:bg-white dark:text-black dark:hover:bg-emerald-500 dark:hover:text-white font-bold py-2 px-6 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25">
-          Contact Me
-        </a>
-        <a href="https://www.linkedin.com/in/grarizki" target="_blank" class="bg-transparent border border-black text-black hover:border-emerald-600 hover:text-emerald-600 hover:bg-emerald-50 dark:border-white dark:text-white dark:hover:border-emerald-400 dark:hover:text-emerald-400 dark:hover:bg-emerald-900/10 font-bold py-2 px-6 rounded-full transition-all">
-          LinkedIn
-        </a>
-      </div>
-    </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Engineering with physical intuition and architectural discipline.
+          </h2>
 
-    <div class="grid grid-cols-3 md:grid-cols-1 gap-3 md:gap-5 h-full">
-      <div class="bg-gradient-to-br from-blue-600/10 to-purple-600/10 dark:from-blue-600/20 dark:to-purple-600/20 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl transition-all duration-300 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20">
-        <p class="text-2xl md:text-4xl font-bold text-black dark:text-white mb-1">3+</p>
-        <p class="text-gray-900 dark:text-gray-400 text-xs md:text-sm uppercase tracking-wider font-semibold">
-          Years of Experience
-        </p>
-      </div>
-      <div class="bg-gradient-to-br from-emerald-600/10 to-teal-600/10 dark:from-emerald-600/20 dark:to-teal-600/20 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/20">
-        <p class="text-2xl md:text-4xl font-bold text-black dark:text-white mb-1">97%</p>
-        <p class="text-gray-900 dark:text-gray-400 text-xs md:text-sm uppercase tracking-wider font-semibold">
-          LCP Improvement
-        </p>
-      </div>
-      <div class="bg-gradient-to-br from-orange-600/10 to-red-600/10 dark:from-orange-600/20 dark:to-red-600/20 backdrop-blur-md border border-gray-200 dark:border-white/10 p-6 rounded-2xl transition-all duration-300 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20">
-        <p class="text-2xl md:text-4xl font-bold text-black dark:text-white mb-1">50-60%</p>
-        <p class="text-gray-900 dark:text-gray-400 text-xs md:text-sm uppercase tracking-wider font-semibold">
-          API Request Reduction
-        </p>
+          <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Software Engineer with a Physics Engineering background. I build high-performance web systems, distributed microservices, and AI pipelines. I focus on concrete operational metrics: rendering speed, API efficiency, and systems teams can safely evolve.
+          </p>
+
+          <div class="pt-2">
+            <a
+              href="/about"
+              class="group inline-flex items-center gap-3 pl-5 pr-2 py-2 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-mono font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
+              <span>Read engineering philosophy</span>
+              <span class="w-7 h-7 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17L17 7"></path>
+                  <path d="M7 7h10v10"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-6 lg:pl-6 lg:border-l border-black/[0.06] dark:border-white/[0.08]">
+          <div>
+            <h3 class="font-mono text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold mb-3">
+              Core Technologies
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {techStack.map((tech) => (
+                <span class="px-3 py-1 text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-900 border border-black/[0.04] dark:border-white/[0.06] rounded-md">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <h3 class="font-mono text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold mb-2">
+              Current Focus
+            </h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Leading frontend performance at PT. BFI Finance Indonesia, building agentic AI developer tooling, and engineering distributed services.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

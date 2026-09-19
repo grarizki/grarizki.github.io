@@ -1,43 +1,120 @@
 ---
 import Contactform from '@components/contactform.astro';
 import Container from '@components/container.astro';
-import Sectionhead from '@components/sectionhead.astro';
 import Layout from '@layouts/Layout.astro';
-import { Icon } from 'astro-icon/components';
 ---
 
-<Layout title="Contact">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Contact</Fragment>
-      <Fragment slot="desc">We are a here to help.</Fragment>
-    </Sectionhead>
-
-    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
-      <div>
-        <h2 class="font-medium text-2xl text-gray-800">Contact Me !</h2>
-        <p class="text-lg leading-relaxed text-slate-500 mt-3">
-          Have something to say? We are here to help. Fill up the form or send
-          email or call phone.
+<Layout title="Direct Contact Station">
+  <Container class="max-w-5xl">
+    <section class="py-20 md:py-32">
+      <!-- Section Header -->
+      <header class="max-w-2xl mb-16 space-y-3">
+        <span class="inline-flex items-center rounded-full px-3.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
+          04 / Direct Communication Station
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+          Start a conversation or discuss an architecture challenge.
+        </h1>
+        <p class="text-zinc-700 dark:text-zinc-300 text-base sm:text-lg leading-relaxed">
+          Open for engineering roles, frontend architecture advisory, and distributed systems consulting.
         </p>
-        <div class="mt-5">
-          <div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:map-marker" />
-            <span>Jakarta, Indonesia</span>
-          </div><div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><a
-              href="mailto:raka.grarizki@gmail.com">raka.grarizki@gmail.com</a
-            >
-          </div><div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:phone" /><a
-              href="tel:+62 812 2418 3361">+62 812 2418 3361</a
-            >
+      </header>
+
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Direct Channels Card (Doppelrand) -->
+        <div class="lg:col-span-5">
+          <div class="p-2 rounded-[2rem] bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.1] shadow-lg">
+            <div class="p-6 sm:p-8 rounded-[calc(2rem-0.5rem)] bg-white dark:bg-zinc-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] space-y-6">
+              <div>
+                <span class="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">
+                  STATION_NODE // DIRECT_ROUTING
+                </span>
+                <h2 class="text-xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight mt-1">
+                  Communication Channels
+                </h2>
+                <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
+                  Direct channels for technical discussions, project inquiries, and hiring conversations.
+                </p>
+              </div>
+
+              <!-- Channel List -->
+              <div class="space-y-4 pt-2 border-t border-zinc-200 dark:border-zinc-800/80">
+                <div class="space-y-1">
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                    Electronic Mail
+                  </span>
+                  <div>
+                    <a
+                      href="mailto:raka.grarizki@gmail.com"
+                      class="text-sm font-mono font-medium text-zinc-900 dark:text-zinc-100 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                      raka.grarizki@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div class="space-y-1">
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                    Telephony // Signal
+                  </span>
+                  <div>
+                    <a
+                      href="tel:+6281224183361"
+                      class="text-sm font-mono font-medium text-zinc-900 dark:text-zinc-100 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                      +62 812 2418 3361
+                    </a>
+                  </div>
+                </div>
+
+                <div class="space-y-1">
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                    Physical Station
+                  </span>
+                  <div class="text-sm font-mono text-zinc-800 dark:text-zinc-200">
+                    Jakarta, Indonesia (UTC+7 · Remote Ready)
+                  </div>
+                </div>
+              </div>
+
+              <!-- Telemetry Badge & Socials -->
+              <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800/80 space-y-3">
+                <div class="flex items-center justify-between text-xs font-mono">
+                  <span class="text-zinc-500">AVG_RESPONSE</span>
+                  <span class="text-emerald-600 dark:text-emerald-400 font-semibold">&lt; 24 HOURS</span>
+                </div>
+
+                <div class="flex items-center gap-3 pt-2">
+                  <a
+                    href="https://github.com/grarizki"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-3 py-1.5 rounded-full text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 transition-colors">
+                    GitHub ↗
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/grarizki"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-3 py-1.5 rounded-full text-xs font-mono bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 transition-colors">
+                    LinkedIn ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dispatch Form (Doppelrand) -->
+        <div class="lg:col-span-7">
+          <div class="p-2 rounded-[2rem] bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.1] shadow-lg">
+            <div class="p-6 sm:p-10 rounded-[calc(2rem-0.5rem)] bg-white dark:bg-zinc-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+              <span class="block font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold mb-6">
+                DISPATCH_PACKET // TRANSMIT_TERMINAL
+              </span>
+              <Contactform />
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <Contactform />
-      </div>
-    </div>
+    </section>
   </Container>
 </Layout>

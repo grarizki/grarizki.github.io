@@ -70,30 +70,29 @@ const makeTitle = title
         ) {
           return localStorage.getItem("theme");
         }
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
+        if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+          return "light";
+        }
+        return "dark";
       };
 
-      const setDarkClass = () => {
+      const setDarkClass = (doc = document) => {
         const isDark = getThemePreference() === "dark";
-        document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+        doc.documentElement.classList[isDark ? "add" : "remove"]("dark");
       };
 
+      // Immediate execution in head before first paint
       setDarkClass();
 
-      document.addEventListener("astro:after-swap", setDarkClass);
+      // Synchronize theme to incoming document before Astro swaps DOM
+      document.addEventListener("astro:before-swap", (event) => {
+        setDarkClass(event.newDocument);
+      });
 
-      if (typeof localStorage !== "undefined") {
-        const observer = new MutationObserver(() => {
-          const isDark = document.documentElement.classList.contains("dark");
-          localStorage.setItem("theme", isDark ? "dark" : "light");
-        });
-        observer.observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ["class"],
-        });
-      }
+      // Re-verify after swap
+      document.addEventListener("astro:after-swap", () => {
+        setDarkClass();
+      });
     </script>
 
     <SEO
@@ -119,14 +118,28 @@ const makeTitle = title
     />
   </head>
   <body
-    class="text-black dark:text-white transition-colors duration-300 bg-white dark:bg-black">
+    class="blueprint-grid text-zinc-900 dark:text-zinc-100 transition-colors duration-500 bg-white dark:bg-[#09090B] antialiased selection:bg-emerald-500/20 selection:text-emerald-400 relative min-h-screen">
+    <!-- CRT Scanline Atmospheric Overlay -->
+    <div class="crt-scanlines fixed inset-0 z-40 pointer-events-none opacity-30 dark:opacity-20" aria-hidden="true"></div>
+
+    <!-- Blueprint Coordinate Badges (Dynamic cursor tracking) -->
+    <div
+      id="hud-coords"
+      class="fixed top-2.5 left-4 z-30 pointer-events-none hidden lg:block font-mono text-[9px] text-zinc-400 dark:text-zinc-600 uppercase tracking-widest"
+      aria-hidden="true">
+      GRID: 48PX // X: <span id="hud-x" class="text-emerald-600 dark:text-emerald-400 font-semibold tabular-nums">0000</span> Y: <span id="hud-y" class="text-emerald-600 dark:text-emerald-400 font-semibold tabular-nums">0000</span>
+    </div>
+    <div class="fixed bottom-2 right-4 z-30 pointer-events-none hidden xl:block font-mono text-[9px] text-zinc-400 dark:text-zinc-600 uppercase tracking-widest" aria-hidden="true">
+      STATION: BFI_SYS // REFRESH: NOMINAL
+    </div>
+
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500">
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-zinc-900 focus:text-white dark:focus:bg-white dark:focus:text-zinc-900 focus:rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500">
       Skip to content
     </a>
     <Navbar />
-    <main id="main-content">
+    <main id="main-content" class="pt-16 sm:pt-20">
       <div transition:animate="fade">
         <slot />
       </div>
@@ -137,5 +150,37 @@ const makeTitle = title
         content-visibility: auto;
       }
     </style>
+    <!-- Real-time HUD Cursor Telemetry Script -->
+    <script>
+      let isTicking = false;
+      let mouseX = 0;
+      let mouseY = 0;
+
+      function updateHUD() {
+        const xElem = document.getElementById("hud-x");
+        const yElem = document.getElementById("hud-y");
+        if (xElem && yElem) {
+          xElem.textContent = mouseX.toString().padStart(4, "0");
+          yElem.textContent = mouseY.toString().padStart(4, "0");
+        }
+        isTicking = false;
+      }
+
+      function handleMouseMove(e: MouseEvent) {
+        mouseX = Math.round(e.clientX);
+        mouseY = Math.round(e.clientY);
+        if (!isTicking) {
+          requestAnimationFrame(updateHUD);
+          isTicking = true;
+        }
+      }
+
+      function initCursorTracker() {
+        window.removeEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mousemove", handleMouseMove, { passive: true });
+      }
+
+      document.addEventListener("astro:page-load", initCursorTracker);
+    </script>
   </body>
 </html>

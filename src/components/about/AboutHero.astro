@@ -1,0 +1,48 @@
+---
+import TelemetryTerminal from "@components/ui/TelemetryTerminal.astro";
+interface Props {
+  eyebrow: string;
+  headline: string;
+  bio: string;
+  proofTags: string[];
+  status: {
+    name: string;
+    note: string;
+  };
+}
+
+const { eyebrow, headline, bio, proofTags, status } = Astro.props;
+---
+
+<section class="py-20 md:py-32 border-b border-black/[0.06] dark:border-white/[0.08]">
+  <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <div class="lg:col-span-8 space-y-8">
+      <div>
+        <span class="inline-flex items-center rounded-full px-3.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+          {eyebrow}
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.15]">
+        {headline}
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
+        {bio}
+      </p>
+
+      <div class="flex flex-wrap gap-2.5 pt-2">
+        {proofTags.map((tag) => (
+          <span class="px-3.5 py-1.5 text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 rounded-full transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-zinc-400 dark:hover:border-zinc-500">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Cybernetic Telemetry Command Card -->
+    <div class="lg:col-span-4 w-full">
+      <TelemetryTerminal />
+    </div>
+  </div>
+</section>
