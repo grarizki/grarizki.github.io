@@ -49,7 +49,7 @@ export interface AboutData {
 }
 
 export const aboutData: AboutData = {
-  eyebrow: "About / Software engineer and systems architect",
+  eyebrow: "About / Software engineer",
   headline: "I turn complex workflows into high-performance web systems.",
   bio: "Software Engineer with three years of production experience building high-performance web applications, AI-driven tooling, and distributed backend services. Physics Engineering background combined with pragmatic engineering across React, Next.js, Astro, FastAPI, and mobile platforms.",
   proofTags: [

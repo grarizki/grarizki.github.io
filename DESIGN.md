@@ -1,4 +1,4 @@
-# Design System: Vanguard Editorial Systems Architect
+# Design System: Vanguard Editorial
 
 ## 1. Visual Theme & Atmosphere
 The interface projects the quiet confidence of an architecture firm monograph combined with the precision of high-reliability software. The density stays balanced at index 5, prioritizing macro-whitespace and legible typographic hierarchies over visual clutter. 
